@@ -1,5 +1,7 @@
+{{- if eq .chezmoi.hostname "B00T" }}
 # Display neofetch on new terminal
 neofetch
+{{- end }}
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -10,6 +12,10 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+{{- if eq .chezmoi.hostname "XPS-9510" }}
+export PATH=/var/lib/flatpak/exports/bin:$PATH
+export PATH=~/.local/share/flatpak/exports/bin:$PATH
+{{- end }}
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -110,7 +116,9 @@ export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+{{- if eq .chezmoi.hostname "B00T" }}
 alias "update"=./.update_with_reflector.sh
+{{- end }}
 
 # Custom function
 sf() {
