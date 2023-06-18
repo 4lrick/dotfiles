@@ -91,7 +91,7 @@ label = RAM %percentage_used%%
 [module/temperature]
 type = custom/script
 interval = 5
-exec = echo "$(sensors | grep 'Tctl:' | awk '{sub(/\+/,"",$2); print $2}')"
+exec = {{- if eq .chezmoi.hostname "BOOT }} echo "$(sensors | grep 'Tctl:' | awk '{sub(/\+/,"",$2); print $2}')" {{- else if eq .chezmoi.hostname "XPS-9510" }} echo "$(sensors | grep 'Tctl:' | awk '{sub(/\+/,"",$2); print $2}')" {{- end}}
 click-left = /home/suntyx/.config/polybar/scripts/temp.sh
 
 
@@ -104,7 +104,7 @@ type = custom/script
 exec = uname -r
 tail = true
 interval = 1024
-format = {{- if eq .chezmoi.hostname "B00T" }}{{ .arch_logo }} <label>{{- else if eq .chezmoi.hostname "XPS-9510" }}{{ .fedora_logo }} <label>{{- else }}{{ .default_logo }} <label>{{- end}}
+format = {{- if eq .chezmoi.hostname "B00T" }}{{ .arch_logo }} <label>{{- else if eq .chezmoi.hostname "XPS-9510" }}{{ .fedora_logo }} <label>{{- end}}
   
 [network-base]
 type = internal/network
