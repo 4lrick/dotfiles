@@ -18,7 +18,12 @@ configuration {
 
 * {
     /* Resolution : 1920x1080 */
+    {{- if eq .chezmoi.hostname "B00T" }}
     box-spacing:                 75px;
+    {{- end }}
+    {{- if eq .chezmoi.hostname "XPS-9510" }}
+    box-spacing:                 170px;
+    {{- end }}
     box-margin:                  300px 250px;
     box-padding:                 50px;
     message-margin:              0px 400px;
