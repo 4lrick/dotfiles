@@ -92,7 +92,7 @@ label = RAM %percentage_used%%
 type = custom/script
 interval = 5
 exec = {{- if eq .chezmoi.hostname "B00T" }} echo "$(sensors | grep 'Tctl:' | awk '{sub(/\+/,"",$2); print $2}')" {{- else if eq .chezmoi.hostname "XPS-9510" }} echo "$(sensors | grep 'CPU:' | awk '{sub(/\+/,"",$2); print $2}')" {{- end }}
-click-left = /home/suntyx/.config/polybar/scripts/temp.sh
+click-left = $HOME/.config/polybar/scripts/temp.sh
 
 
 label = 󰏈  %output%
