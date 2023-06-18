@@ -122,7 +122,7 @@ label-disconnected =
 
 [module/wlan]
 inherit = wifi
-interface = wlp4s0
+interface = {{- if eq .chezmoi.hostname "B00T" }} wlp4s0 {{- else if eq .chezmoi.hostname "XPS-9510"}} wlp0s20f3 {{- end}}
 label-connected = 󰖩 %essid%
 
 [module/eth]
