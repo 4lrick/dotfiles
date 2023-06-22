@@ -1,5 +1,5 @@
 -- Silent keymap option
-local opts = { silent = true }
+local opts = { noremap = true, silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
