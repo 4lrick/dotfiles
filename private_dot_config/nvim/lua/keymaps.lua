@@ -26,7 +26,7 @@ keymap("n", "bn", ":bnext<CR>", opts)
 keymap("n", "bp", ":bprevious<CR>", opts)
 
 -- Clear highlights
-keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+keymap("n", "<leader>hls", "<cmd>nohlsearch<CR>", opts)
 
 -- Insert --
 -- Press jk fast to exit insert mode
