@@ -47,7 +47,7 @@ separator-foreground = #FFFFFF
 font-0 = JetBrainsMono Nerd Font:style=Regular:size=10;0
 
 modules-left = xworkspaces xwindow
-modules-right = cpu memory temperature kernel eth wlan pulseaudio date time
+modules-right = cpu memory temperature battery kernel eth wlan pulseaudio date time
 cursor-click = pointer
 
 enable-ipc = true
@@ -98,6 +98,60 @@ click-left = $HOME/.config/polybar/scripts/temp.sh
 label = 󰏈  %output%
 label-foreground = ${colors.foreground}
 
+{{- if eq .chezmoi.hostname "XPS-9510" }}
+[module/battery]
+type = internal/battery
+
+full-at = 100
+low-at = 5
+
+battery = BAT0
+adapter = ADP1
+
+poll-interval = 5
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+format-low = <label-low> <animation-low>
+
+label-charging = Charging %percentage%%
+label-discharging = Discharging %percentage%%
+label-full = Fully charged
+label-low = BATTERY LOW
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+; Only applies if <animation-low> is used
+animation-low-0 = !
+animation-low-1 = 
+animation-low-framerate = 200
+{{- end }}
 
 [module/kernel]
 type = custom/script
