@@ -43,8 +43,7 @@ exec nm-applet
 
 # Polybar at startup
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-{{- if eq .chezmoi.hostname "B00T" }}
+{{ if eq .chezmoi.hostname "B00T" }}
 # Numlockx at startup
 exec --no-startup-id numlockx on
 {{- end }}
@@ -61,8 +60,7 @@ exec --no-startup-id dunst
 # Flameshot at startup
 exec --no-startup-id flameshot
 bindsym $mod+Shift+S exec flameshot gui
-
-{{- if eq .chezmoi.hostname "B00T" }}
+{{ if eq .chezmoi.hostname "B00T" }}
 # Redshift at startup
 exec --no-startup-id redshift 
 {{- end }}
@@ -76,8 +74,7 @@ exec --no-startup-id feh /home/alrick/Pictures/enso_wallpaper.jpg --bg-center
 
 # Discord at startup
 exec discord 
-
-{{- if eq .chezmoi.hostname "B00T" }}
+{{ if eq .chezmoi.hostname "B00T" }}
 # Ferdi at startup
 exec ferdi
 {{- end }}
@@ -100,7 +97,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 {{- end }}
-
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
@@ -195,8 +191,7 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
-{{- if eq .chezmoi.hostname "B00T" }}
+{{ if eq .chezmoi.hostname "B00T" }}
 # Monitor
 set $monitor_left DP-3
 set $monitor_right DP-1
