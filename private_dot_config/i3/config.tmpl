@@ -46,7 +46,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 {{ if eq .chezmoi.hostname "B00T" }}
 # Numlockx at startup
 exec --no-startup-id numlockx on
-{{- end }}
+{{ end }}
 # Polkit-gnome at startup
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
