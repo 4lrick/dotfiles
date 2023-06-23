@@ -95,7 +95,11 @@ label = RAM %percentage_used%%
 [module/temperature]
 type = custom/script
 interval = 5
-exec = {{- if eq .chezmoi.hostname "B00T" }} echo "$(sensors | grep 'Tctl:' | awk '{sub(/\+/,"",$2); print $2}')" {{- else if eq .chezmoi.hostname "XPS-9510" }} echo "$(sensors | grep 'CPU:' | awk '{sub(/\+/,"",$2); print $2}')" {{- end }}
+{{- if eq .chezmoi.hostname "B00T" }}
+exec = echo "$(sensors | grep 'Tctl:' | awk '{sub(/\+/,"",$2); print $2}')"
+{{- else if eq .chezmoi.hostname "XPS-9510" }}
+exec echo "$(sensors | grep 'CPU:' | awk '{sub(/\+/,"",$2); print $2}')"
+{{- end }}
 click-left = $HOME/.config/polybar/scripts/temp.sh
 
 
@@ -145,7 +149,11 @@ type = custom/script
 exec = uname -r
 tail = true
 interval = 1024
-format = {{- if eq .chezmoi.hostname "B00T" }}{{ .arch_logo }} <label>{{- else if eq .chezmoi.hostname "XPS-9510" }}{{ .fedora_logo }} <label>{{- end}}
+{{- if eq .chezmoi.hostname "B00T" }}
+format = {{ .arch_logo }} <label>
+{{- else if eq .chezmoi.hostname "XPS-9510" }}
+format = {{ .fedora_logo }} <label>
+{{- end}}
   
 [network-base]
 type = internal/network
@@ -163,7 +171,11 @@ label-disconnected =
 
 [module/wlan]
 inherit = wifi
-interface = {{- if eq .chezmoi.hostname "B00T" }} wlp4s0 {{- else if eq .chezmoi.hostname "XPS-9510"}} wlp0s20f3 {{- end}}
+{{- if eq .chezmoi.hostname "B00T" }}
+interface = wlp4s0
+{{- else if eq .chezmoi.hostname "XPS-9510"}}
+interface = wlp0s20f3
+{{- end}}
 label-connected = 󰖩 %essid%
 
 [module/eth]
