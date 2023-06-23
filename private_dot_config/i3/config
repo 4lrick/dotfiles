@@ -243,6 +243,9 @@ bindsym $mod+r mode "resize"
 
 # Window config
 
+# Hide borders
+hide_edge_borders none
+
 # Xprop for finding the program name
 
 # Open Zappy in floating mode 
