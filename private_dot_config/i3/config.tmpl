@@ -47,7 +47,6 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Numlockx at startup
 exec --no-startup-id numlockx on
 {{- end }}
-
 # Polkit-gnome at startup
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
@@ -64,7 +63,6 @@ bindsym $mod+Shift+S exec flameshot gui
 # Redshift at startup
 exec --no-startup-id redshift 
 {{- end }}
-
 # Feh at startup
 {{- if eq .chezmoi.hostname "B00T" }}
 exec --no-startup-id feh $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png --bg-center 
@@ -77,8 +75,8 @@ exec discord
 {{ if eq .chezmoi.hostname "B00T" }}
 # Ferdi at startup
 exec ferdi
-{{- end }}
-{{ if eq .chezmoi.hostname "XPS-9510" }}
+{{ end }}
+{{- if eq .chezmoi.hostname "XPS-9510" }}
 # Natural Scrolling
 exec --no-startup-id xinput --set-prop 11 "libinput Natural Scrolling Enabled" 1
 
@@ -95,7 +93,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Brightness control
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
-{{- end }}
+{{ end }}
+
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
