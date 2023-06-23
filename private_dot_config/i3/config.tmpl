@@ -35,7 +35,7 @@ if {{- eq .chezmoi.hostname "B00T" }}
 bindsym $mod+l exec --no-startup-id i3lock -nti $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
 else if {{- eq .chezmoi.hostname "XPS-9510" }}
 bindsym $mod+l exec betterlockscreen -l dim -w $HOME/Pictures/enso_wallpaper.jpg
-{{- end }}
+{{ end }}
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
