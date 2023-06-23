@@ -31,7 +31,11 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # Lock screen
+if {{- eq .chezmoi.hostname "B00T" }}
 bindsym $mod+l exec --no-startup-id i3lock -nti $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
+else if {{- eq .chezmoi.hostname "XPS-9510" }}
+bindsym $mod+l exec betterlockscreen -l dim -w $HOME/Pictures/enso_wallpaper.jpg
+{{- end }}
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -40,8 +44,10 @@ exec nm-applet
 # Polybar at startup
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+if {{- eq .chezmoi.hostname "B00T" }}
 # Numlockx at startup
 exec --no-startup-id numlockx on
+{{- end }}
 
 # Polkit-gnome at startup
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -54,19 +60,35 @@ exec --no-startup-id dunst
 
 # Flameshot at startup
 exec --no-startup-id flameshot
-bindsym $mod+Shift+S exec /usr/bin/flameshot gui
+bindsym $mod+Shift+S exec flameshot gui
 
+if {{- eq .chezmoi.hostname "B00T" }}
 # Redshift at startup
 exec --no-startup-id redshift 
+{{- end }}
 
 # Feh at startup
+if {{- eq .chezmoi.hostname "B00T" }}
 exec --no-startup-id feh $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png --bg-center 
+else if {{- eq .chezmoi.hostname "XPS-9510" }}
+exec --no-startup-id feh /home/alrick/Pictures/enso_wallpaper.jpg --bg-center
+{{- end }}
 
 # Discord at startup
 exec discord 
 
+if {{- eq .chezmoi.hostname "B00T" }}
 # Ferdi at startup
 exec ferdi
+{{- end }}
+
+if {{- eq .chezmoi.hostname "XPS-9510" }}
+# Natural Scrolling
+exec --no-startup-id xinput --set-prop 11 "libinput Natural Scrolling Enabled" 1
+
+# Tap to click touchpad
+exec xinput set-prop "DLL0945:00 04F3:311C Touchpad" "libinput Tapping Enabled" 1
+{{- end }}
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -74,6 +96,18 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+if {{- eq .chezmoi.hostname "XPS-9510" }}
+# Brightness control
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+{{- end }}
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -164,6 +198,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+if {{- eq .chezmoi.hostname "B00T" }}
 # Monitor
 set $monitor_left DP-3
 set $monitor_right DP-1
@@ -173,6 +208,7 @@ set $main_monitor HDMI-0
 workspace $ws2 output $monitor_left
 workspace $ws3 output $monitor_right
 workspace $ws1 output $main_monitor
+{{- end }}
 
 # switch to workspace
 bindsym $mod+ampersand workspace number $ws1
@@ -249,26 +285,38 @@ default_floating_border pixel 4
 
 # Xprop for finding the program name
 
-# Open Zappy in floating mode 
+# Open program in specific workspace
+if {{- eq .chezmoi.hostname "XPS-9510" }}
+assign [class="org.gnome.Nautilus"] $ws2
+assign [class="Code"] $ws4
+assign [class="Microsoft Teams - Preview"] $ws5
+assign [class="Microsoft-edge" instance="crx__pkooggnaalmfkidjmlhoelhdllpphaga"] $ws6
+assign [class="discord"] $ws7
+else if {{ - eq .chezmoi.hostname "B00T" }}
+assign [class="discord"] $ws2
+assign [class="Ferdi"] $ws3
+{{- end }}
+
+# Open program in floating mode 
 for_window [class="Zappy" instance="zappy_gui"] floating enable, move position center
 
-# Open file manager in floating mode
+if {{- eq .chezmoi.hostname "B00T" }}
 for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable, move position center
+{{- end }}
 bindsym $mod+e exec nautilus 
 
-# Open brave with no borders
+# Open program with no borders
 for_window [class="Brave-browser" instance="brave-browser"] border pixel 0 
-
-# Open discord with no borders
 for_window [class="discord" instance="discord"] border pixel 0 
-assign [class="discord"] $ws2
-
-# Open ferdi with no border
+if {{- eq .chezmoi.hostname "B00T" }}
 for_window [class="Ferdi" instance="ferdi"] border pixel 0
-assign [class="Ferdi"] $ws3
-
-# Open beamngdrive with no border
 for_window [class="steam_app_284160" instance="steam_app_284160"] border pixel 0
+else if {{ - eq .chezmoi.hostname "XPS-9510" }}
+for_window [class="Code" instance="code"] border pixel 0
+for_window [class="neovide" instance="neovide"] border pixel 0
+for_window [class="Microsoft-edge" instance="crx__pkooggnaalmfkidjmlhoelhdllpphaga"] border pixel 0
+for_window [class="jetbrains-fleet" instance="jetbrains-fleet"] border pixel 0
+{{- end }}
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #cc2e2e #772828 #ffffff #f42e2e   #cc2e2e
