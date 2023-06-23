@@ -47,7 +47,11 @@ separator-foreground = #FFFFFF
 font-0 = JetBrainsMono Nerd Font:style=Regular:size=10;0
 
 modules-left = xworkspaces xwindow
+{{- if eq .chezmoi.hostname "B00T" }}
+modules-right = cpu memory temperature kernel eth wlan pulseaudio date time
+{{- else if eq .chezmoi.hostname "XPS-9510" }}
 modules-right = cpu memory temperature battery kernel eth wlan pulseaudio date time
+{{- end }}
 cursor-click = pointer
 
 enable-ipc = true
