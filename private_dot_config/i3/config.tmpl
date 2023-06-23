@@ -292,7 +292,7 @@ assign [class="Code"] $ws4
 assign [class="Microsoft Teams - Preview"] $ws5
 assign [class="Microsoft-edge" instance="crx__pkooggnaalmfkidjmlhoelhdllpphaga"] $ws6
 assign [class="discord"] $ws7
-else if {{ - eq .chezmoi.hostname "B00T" }}
+{{- else if eq .chezmoi.hostname "B00T" }}
 assign [class="discord"] $ws2
 assign [class="Ferdi"] $ws3
 {{- end }}
@@ -311,7 +311,7 @@ for_window [class="discord" instance="discord"] border pixel 0
 {{- if eq .chezmoi.hostname "B00T" }}
 for_window [class="Ferdi" instance="ferdi"] border pixel 0
 for_window [class="steam_app_284160" instance="steam_app_284160"] border pixel 0
-else if {{ - eq .chezmoi.hostname "XPS-9510" }}
+{{- else if eq .chezmoi.hostname "XPS-9510" }}
 for_window [class="Code" instance="code"] border pixel 0
 for_window [class="neovide" instance="neovide"] border pixel 0
 for_window [class="Microsoft-edge" instance="crx__pkooggnaalmfkidjmlhoelhdllpphaga"] border pixel 0
