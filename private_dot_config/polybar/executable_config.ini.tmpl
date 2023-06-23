@@ -98,7 +98,7 @@ interval = 5
 {{- if eq .chezmoi.hostname "B00T" }}
 exec = echo "$(sensors | grep 'Tctl:' | awk '{sub(/\+/,"",$2); print $2}')"
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
-exec echo "$(sensors | grep 'CPU:' | awk '{sub(/\+/,"",$2); print $2}')"
+exec = echo "$(sensors | grep 'CPU:' | awk '{sub(/\+/,"",$2); print $2}')"
 {{- end }}
 click-left = $HOME/.config/polybar/scripts/temp.sh
 
