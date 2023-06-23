@@ -62,7 +62,7 @@ bindsym $mod+Shift+S exec flameshot gui
 {{ if eq .chezmoi.hostname "B00T" }}
 # Redshift at startup
 exec --no-startup-id redshift 
-{{- end }}
+{{ end }}
 # Feh at startup
 {{- if eq .chezmoi.hostname "B00T" }}
 exec --no-startup-id feh $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png --bg-center 
