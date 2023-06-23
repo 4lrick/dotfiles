@@ -33,11 +33,13 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
+{{- if eq .chezmoi.hostname "B00T" }}
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # Lock screen
-{{- if eq .chezmoi.hostname "B00T" }}
 bindsym $mod+l exec --no-startup-id i3lock -nti $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
+exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l -s dim -w $HOME/Pictures/enso_wallpaper.jpg
+# Lock screen
 bindsym $mod+l exec betterlockscreen -l dim -w $HOME/Pictures/enso_wallpaper.jpg
 {{- end }}
 
