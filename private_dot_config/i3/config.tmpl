@@ -82,7 +82,7 @@ exec discord
 exec ferdi
 {{- end }}
 
-{{- if eq .chezmoi.hostname "XPS-9510" }}
+{{ if eq .chezmoi.hostname "XPS-9510" }}
 # Natural Scrolling
 exec --no-startup-id xinput --set-prop 11 "libinput Natural Scrolling Enabled" 1
 
@@ -97,7 +97,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-{{- if eq .chezmoi.hostname "XPS-9510" }}
+{{ if eq .chezmoi.hostname "XPS-9510" }}
 # Brightness control
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
@@ -288,6 +288,7 @@ default_floating_border pixel 4
 # Open program in specific workspace
 {{- if eq .chezmoi.hostname "XPS-9510" }}
 assign [class="org.gnome.Nautilus"] $ws2
+bindsym $mod+e exec nautilus 
 assign [class="Code"] $ws4
 assign [class="Microsoft Teams - Preview"] $ws5
 assign [class="Microsoft-edge" instance="crx__pkooggnaalmfkidjmlhoelhdllpphaga"] $ws6
@@ -302,8 +303,8 @@ for_window [class="Zappy" instance="zappy_gui"] floating enable, move position c
 
 {{- if eq .chezmoi.hostname "B00T" }}
 for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable, move position center
-{{- end }}
 bindsym $mod+e exec nautilus 
+{{- end }}
 
 # Open program with no borders
 for_window [class="Brave-browser" instance="brave-browser"] border pixel 0 
