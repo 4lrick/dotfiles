@@ -301,7 +301,7 @@ for_window [class="Zappy" instance="zappy_gui"] floating enable, move position c
 
 {{- if eq .chezmoi.hostname "B00T" }}
 for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable, move position center
-bindsym $mod+e exec nautilus 
+bindsym $mod+e exec i3-sensible-terminal -e ranger 
 {{- end }}
 
 # Open program with no borders
