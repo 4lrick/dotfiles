@@ -28,6 +28,8 @@ keymap("n", "bp", ":bprevious<CR>", opts)
 -- Clear highlights
 keymap("n", "<leader>H", ":nohlsearch<CR>", opts)
 
+-- Remove macro key since I don't use it
+vim.keymap.set('n', "q", "<nop>", { silent = true })
 -- Insert --
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
