@@ -1,7 +1,7 @@
 local M = {
 	"echasnovski/mini.move",
 	version = false,
-    event = "VeryLazy"
+	event = "VeryLazy",
 }
 
 function M.config()
