@@ -150,9 +150,9 @@ exec = uname -r
 tail = true
 interval = 1024
 {{- if eq .chezmoi.hostname "B00T" }}
-format = {{ .arch_logo }} <label>
+format =  <label>
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
-format = {{ .fedora_logo }} <label>
+format =  <label>
 {{- end}}
   
 [network-base]
