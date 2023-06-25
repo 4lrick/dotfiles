@@ -22,8 +22,8 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "bn", ":bnext<CR>", opts)
-keymap("n", "bp", ":bprevious<CR>", opts)
+keymap("n", "<leader>bn", ":bnext<CR>", opts)
+keymap("n", "<leader>bp", ":bprevious<CR>", opts)
 
 -- Clear highlights
 keymap("n", "<leader>H", ":nohlsearch<CR>", opts)
