@@ -96,9 +96,9 @@ label = RAM %percentage_used%%
 type = custom/script
 interval = 5
 {{- if eq .chezmoi.hostname "B00T" }}
-exec = echo "$(sensors | grep 'Tctl:' | awk '{sub(/\+/,"",$2); print $2}')"
+exec = echo "$(sensors | grep 'Tctl:' | awk '{sub(/\\+/,"",$2); print $2}')"
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
-exec = echo "$(sensors | grep 'CPU:' | awk '{sub(/\+/,"",$2); print $2}')"
+exec = echo "$(sensors | grep 'CPU:' | awk '{sub(/\\+/,"",$2); print $2}')"
 {{- end }}
 click-left = $HOME/.config/polybar/scripts/temp.sh
 
@@ -198,7 +198,7 @@ click-right = pavucontrol
 [module/date]
 type = custom/script
 exec = echo "$(date '+%d/%m/%y')"
-click-left = notify-send "Calendrier" "\n$(cal)"
+click-left = notify-send "Calendrier" "\\n$(cal)"
 
 label = 󰃭 %output%
 label-foreground = ${colors.foreground}
