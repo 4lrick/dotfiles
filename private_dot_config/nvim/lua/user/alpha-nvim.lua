@@ -1,6 +1,6 @@
 local M = {
 	"goolord/alpha-nvim",
-	requires = { "nvim-tree/nvim-web-devicons" },
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 	event = "VimEnter",
 }
 
