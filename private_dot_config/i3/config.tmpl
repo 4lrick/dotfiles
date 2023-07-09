@@ -56,8 +56,10 @@ exec --no-startup-id numlockx on
 # Polkit-gnome at startup
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+{{- if eq .chezmoi.hostname "XPS-9510" }}
 # Picom at startup
 exec --no-startup-id picom
+{{- end}}
 
 # Dunst at startup
 exec --no-startup-id dunst
