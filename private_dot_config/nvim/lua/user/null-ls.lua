@@ -29,6 +29,7 @@ function M.config()
 			formatting.clang_format,
 			diagnostics.flake8,
 			formatting.stylua,
+			formatting.prettier,
 		},
 	})
 end
