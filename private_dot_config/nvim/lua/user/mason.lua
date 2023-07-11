@@ -5,7 +5,6 @@ local M = {
 	dependencies = {
 		{
 			"williamboman/mason-lspconfig.nvim",
-			lazy = true,
 		},
 	},
 }
