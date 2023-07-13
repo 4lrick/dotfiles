@@ -10,6 +10,7 @@ M.servers = {
 	"lua_ls",
 	"marksman",
 	"pyright",
+    "tsserver",
 	"yamlls",
 }
 
