@@ -119,7 +119,7 @@ export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 {{- if eq .chezmoi.hostname "B00T" }}
 alias "update"=./.update_with_reflector.sh
 {{- end }}
-
+alias "ls --hyperlink=auto"=ls
 # Custom function
 sf() {
     sudo find / \( -type f -o -type d \) -iname "*$1*" 2>/dev/null
