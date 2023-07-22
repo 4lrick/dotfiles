@@ -120,6 +120,7 @@ export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 alias "update"=./.update_with_reflector.sh
 {{- end }}
 alias "ls"="ls --hyperlink=auto --color=auto" 
+alias "cat"="bat" 
 # Custom function
 sf() {
     sudo find / \( -type f -o -type d \) -iname "*$1*" 2>/dev/null
