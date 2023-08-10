@@ -121,6 +121,7 @@ alias "update"=./.update_with_reflector.sh
 {{- end }}
 alias "ls"="ls --hyperlink=auto --color=auto" 
 alias "cat"="bat" 
+alias ssh="kitty +kitten ssh"
 # Custom function
 sf() {
     sudo find / \( -type f -o -type d \) -iname "*$1*" 2>/dev/null
