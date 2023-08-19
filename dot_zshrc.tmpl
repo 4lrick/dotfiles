@@ -116,9 +116,6 @@ export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-{{- if eq .chezmoi.hostname "B00T" }}
-alias "update"=./.update_with_reflector.sh
-{{- end }}
 alias "ls"="ls --hyperlink=auto --color=auto" 
 alias "cat"="bat" 
 alias ssh="kitty +kitten ssh"
