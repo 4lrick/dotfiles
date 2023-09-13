@@ -14,3 +14,4 @@ vim.opt.tabstop	      = 4                   -- Number of spaces that a <Tab> in 
 vim.opt.termguicolors = true                -- Enables 24-bit RGB color in the TUI
 vim.opt.undofile      = true		        -- When on, Vim automatically saves undo history to an undo file when writing a buffer to a file, and restores undo history from the same file on buffer read
 vim.opt.wrap 	      = false        	    -- When on, lines longer than the width of the window will wrap and displaying continues on the next line
+vim.opt.autoread      = true                -- When a file has been detected to have been changed outside of Vim and it has not been changed inside of Vim, automatically read it again
