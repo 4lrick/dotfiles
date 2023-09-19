@@ -11,6 +11,7 @@ M.servers = {
 	"marksman",
 	"pyright",
     "tsserver",
+    "volar",
 	"yamlls",
 }
 
