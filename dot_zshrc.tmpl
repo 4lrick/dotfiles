@@ -93,7 +93,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 export EDITOR=nvim
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
-{- if eq .chezmoi.hostname "XPS-9510" }}
+{{- if eq .chezmoi.hostname "XPS-9510" }}
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
