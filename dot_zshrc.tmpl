@@ -134,9 +134,9 @@ sf() {
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # pnpm
-{{ if eq .chezmoi.hostname "XPS-9510" }}
+{{- if eq .chezmoi.hostname "XPS-9510" }}
 export PNPM_HOME="/home/alrick/.local/share/pnpm"
-{{ else if eq .chezmoi.hostname "B00T" }}
+{{- else if eq .chezmoi.hostname "B00T" }}
 export PNPM_HOME="/home/suntyx/.local/share/pnpm"
 {{- end }}
 case ":$PATH:" in
