@@ -32,6 +32,8 @@ function M.config()
 			"markdown",
 			"markdown_inline",
 			"python",
+            "typescript",
+            "vue",
 			"yaml",
 		},
 		sync_install = false,
