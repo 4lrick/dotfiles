@@ -32,6 +32,7 @@ function M.config()
 			"markdown",
 			"markdown_inline",
 			"python",
+            "tsx",
             "typescript",
             "vue",
 			"yaml",
