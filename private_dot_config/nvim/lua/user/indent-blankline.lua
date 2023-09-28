@@ -1,11 +1,15 @@
 local M = {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
+	event = "BufReadPre",
 }
 
 function M.config()
-	require("indent_blankline").setup({
-		show_trailing_blankline_indent = false,
+	require("ibl").setup({
+		whitespace = {
+			remove_blankline_trail = false,
+		},
+		scope = { enabled = false },
 	})
 end
 
