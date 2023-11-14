@@ -30,10 +30,17 @@ keymap("n", "<leader>H", ":nohlsearch<CR>", opts)
 
 -- Remove macro key since I don't use it
 vim.keymap.set('n', "q", "<nop>", { silent = true })
+
 -- Insert --
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
+
+-- Delete word with ctrl+backspace
+keymap("i", "<C-BS>", "<C-w>", opts)
+
+-- Delete word with ctrl+delete
+keymap("i", "<C-Del>", "<C-o>dw", opts)
 
 -- Visual --
 -- Delete current selection and paste while keeping original text
