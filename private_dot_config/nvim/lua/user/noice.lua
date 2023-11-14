@@ -21,6 +21,11 @@ function M.config()
 			enabled = false,
 		},
 	})
+    require("notify").setup({
+        timeout = 1,
+        max_width = 50,
+        render = "wrapped-compact",
+    })
 end
 
 return M
