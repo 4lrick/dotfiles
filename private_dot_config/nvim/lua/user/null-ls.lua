@@ -27,7 +27,6 @@ function M.config()
 		sources = {
 			formatting.black,
 			formatting.clang_format,
-			diagnostics.flake8,
 			formatting.stylua,
 			formatting.prettier,
 		},
