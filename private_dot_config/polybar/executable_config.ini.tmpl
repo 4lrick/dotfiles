@@ -50,12 +50,16 @@ modules-left = xworkspaces xwindow
 {{- if eq .chezmoi.hostname "B00T" }}
 modules-right = cpu memory temperature kernel eth wlan pulseaudio date time
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
-modules-right = cpu memory temperature battery kernel eth wlan pulseaudio date time
+modules-right = cpu memory temperature battery kernel eth wlan pulseaudio date time tray
 {{- end }}
 cursor-click = pointer
 
 enable-ipc = true
-tray-position = right
+
+[module/tray]
+type = internal/tray
+
+tray-spacing = 4px
 
 [module/xworkspaces]
 type = internal/xworkspaces
