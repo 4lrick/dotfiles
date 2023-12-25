@@ -39,6 +39,10 @@
     "network": {
         "format-wifi": "󰖩  {essid}",
         "format-ethernet": "󰌗  {ipaddr}",
+        "format-disconnected": "No connection",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected",
     },
     "pulseaudio": {
         "scroll-step": 5,
@@ -47,9 +51,15 @@
         "on-click": "amixer set Master toggle",
         "on-click-right": "pavucontrol",
     },
-    "clock#clock2": {
+    "clock#clock2": {"tooltip-format": "<tt><small>{calendar}</small></tt>",
         "format": "󰃭  {:%d/%m/%Y}",
-        "on-click": "notify-send 'Calendar' \"\\n$(cal)\""
+        "on-click": "notify-send 'Calendar' \"\\n$(cal)\"",
+        "tooltip-format": "{calendar}",
+        "calendar": {
+                    "format": {
+                              "today":      "<span color='#CC2E2E'><b><u>{}</u></b></span>"
+                              }
+                    },
     },
     "clock": {
         "interval": 1,
