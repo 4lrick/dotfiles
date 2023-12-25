@@ -1,0 +1,62 @@
+{
+    "layer": "top",
+    "output": "HDMI-A-1",
+    "height": 20,
+    "spacing": 4, // Gaps between modules (4px)
+    "modules-left": ["hyprland/workspaces"],
+    "modules-right": ["cpu", "custom/separator", "memory", "custom/separator", "temperature", "custom/separator", "custom/kernel", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "clock#clock2", "custom/separator", "clock", "tray"],
+    // Modules configuration
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "all-outputs": true,
+    },
+    "cpu": {
+        "format": "CPU  {usage}%",
+        "interval": 1,
+    },
+    "memory": {
+        "format": "RAM  {}%",
+        "interval": 1,
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "interval": 5,
+        "format": "󰏈    {temperatureC}°C",
+        "on-click": "~/.config/polybar/scripts/temp.sh"
+    },
+    "custom/kernel": {
+        "exec": "uname -r",
+        "interval": "once",
+        "format": "    {} ",
+    },
+    "network": {
+        "format-wifi": "󰖩  {essid}",
+        "format-ethernet": "󰌗  {ipaddr}",
+    },
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "󰕾  {volume}%",
+        "format-muted": "󰖁  {volume}%",
+        "on-click": "amixer set Master toggle",
+        "on-click-right": "pavucontrol",
+    },
+    "clock#clock2": {
+        "format": "󰃭  {:%d/%m/%Y}",
+        "on-click": "notify-send 'Calendar' \"\\n$(cal)\""
+    },
+    "clock": {
+        "interval": 1,
+        "format": "󱑎  {:%H:%M:%S}",
+    },
+    "tray": {
+        "spacing": 5
+    }
+}
+
