@@ -40,7 +40,11 @@
     "custom/kernel": {
         "exec": "uname -r",
         "interval": "once",
+        {{- if eq .chezmoi.hostname "B00T" }}
         "format": "    {} ",
+        {{- else if eq .chezmoi.hostname "XPS-9510" }}
+        "format": "    {} ",
+        {{- end }}
     },
     "network": {
         "format-wifi": "󰖩  {essid}",
