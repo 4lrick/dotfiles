@@ -20,11 +20,11 @@
         "all-outputs": true,
     },
     "cpu": {
-        "format": "CPU  {usage}%",
+        "format": "CPU {usage}%",
         "interval": 1,
     },
     "memory": {
-        "format": "RAM  {}%",
+        "format": "RAM {}%",
         "interval": 1,
     },
     "temperature": {
@@ -34,7 +34,7 @@
         "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input",
         {{- end }}
         "interval": 5,
-        "format": "󰏈    {temperatureC}°C",
+        "format": "󰏈  {temperatureC}°C",
         "on-click": "~/.config/polybar/scripts/temp.sh"
     },
     "custom/kernel": {
@@ -43,7 +43,7 @@
         {{- if eq .chezmoi.hostname "B00T" }}
         "format": "    {} ",
         {{- else if eq .chezmoi.hostname "XPS-9510" }}
-        "format": "    {} ",
+        "format": "   {} ",
         {{- end }}
     },
     "network": {
