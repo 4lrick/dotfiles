@@ -47,7 +47,11 @@ input {
 
     follow_mouse = 1
 
+    {{- if eq .chezmoi.hostname "B00T" }}
     sensitivity = -0.5 # -1.0 - 1.0, 0 means no modification.
+    {{- else if eq .chezmoi.hostname "XPS-9510" }}
+    sensitivity = 0.1 # -1.0 - 1.0, 0 means no modification.
+    {{- end }}
 
     numlock_by_default = true
     accel_profile = flat
