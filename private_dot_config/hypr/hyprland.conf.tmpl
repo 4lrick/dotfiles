@@ -19,8 +19,8 @@ workspace=DP-1,3
 # Execute apps at launch
 # exec-once = waybar & hyprpaper & firefox
 exec-once = waybar & blueberry-tray & dex --autostart --environment hyprland
-exec-once = swww init
 {{- if eq .chezmoi.hostname "B00T" }}
+exec-once = swww init
 exec-once = swww img $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 exec-once = swaybg -i $HOME/Pictures/enso_wallpaper.jpg
