@@ -146,7 +146,11 @@ windowrulev2 = fullscreen,class:^(steam_app_284160)$
 windowrulev2 = monitor DP-2,class:^(discord)$
 windowrulev2 = noborder,class:^(discord)$
 windowrulev2 = float,class:^(brave-nngceckbapebfimnlniiiahkandclblb-Default)$
+{{- if eq .chezmoi.hostname "B00T" }}
 windowrulev2 = float,class:^(org.gnome.Nautilus)$
+{{- else if eq .chezmoi.hostname "XPS-9510" }}
+windowrulev2 = workspace 2, class:^(org.gnome.Nautilus)$
+{{- end }}
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 $mainMod = SUPER
