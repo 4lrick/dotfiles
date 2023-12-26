@@ -28,7 +28,11 @@
         "interval": 1,
     },
     "temperature": {
+        {{- if eq .chezmoi.hostname "B00T" }}
         "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        {{- else if eq .chezmoi.hostname "XPS-9510" }}
+        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input",
+        {{- end }}
         "interval": 5,
         "format": "󰏈    {temperatureC}°C",
         "on-click": "~/.config/polybar/scripts/temp.sh"
