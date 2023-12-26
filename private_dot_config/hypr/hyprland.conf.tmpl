@@ -53,6 +53,12 @@ input {
     accel_profile = flat
 }
 
+{{- if eq .chezmoi.hostname "XPS-9510" }}
+touchpad {
+    natural_scroll = true
+}
+{{- end }}
+
 general {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
