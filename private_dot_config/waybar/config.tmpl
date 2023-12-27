@@ -6,7 +6,11 @@
     "height": 25,
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": ["hyprland/workspaces"],
+    {{- if eq .chezmoi.hostname "B00T" }}
     "modules-right": ["cpu", "custom/separator", "memory", "custom/separator", "temperature", "custom/separator", "custom/kernel", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "clock#clock2", "custom/separator", "clock", "tray"],
+    {{- else if eq .chezmoi.hostname "XPS-9510" }}
+    "modules-right": ["cpu", "custom/separator", "memory", "custom/separator", "temperature", "custom/separator", "battery", "custom/separator", "custom/kernel", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "clock#clock2", "custom/separator", "clock", "tray"],
+    {{- end }}
     // Modules configuration
     "custom/separator": {
         "format": "|",
@@ -37,6 +41,17 @@
         "format": "󰏈  {temperatureC}°C",
         "on-click": "~/.config/polybar/scripts/temp.sh"
     },
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 10
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
+    }
     "custom/kernel": {
         "exec": "uname -r",
         "interval": "once",
