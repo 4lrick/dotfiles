@@ -25,6 +25,7 @@ exec-once = swww img $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 exec-once = waybar & blueberry-tray & dex-autostart --autostart --environment hyprland
 exec-once = swaybg -i $HOME/Pictures/enso_wallpaper.jpg
+exec-once = ~/.config/hypr/scripts/sleep.sh
 {{- end }}
 
 # Source a file (multi-file configs)
