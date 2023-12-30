@@ -20,8 +20,7 @@ workspace=DP-1,3
 # exec-once = waybar & hyprpaper & firefox
 {{- if eq .chezmoi.hostname "B00T" }}
 exec-once = waybar & blueberry-tray & dex --autostart --environment hyprland
-exec-once = swww init
-exec-once = swww img $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
+exec-once = swww init t && swww img $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 exec-once = waybar & dex-autostart --autostart --environment hyprland
 exec-once = swaybg -i $HOME/Pictures/enso_wallpaper.jpg
