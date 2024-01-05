@@ -146,6 +146,8 @@ windowrulev2 = float,class:(firefox),title:^(Extension: \(Bitwarden - Free Passw
 windowrulev2 = noborder,class:^(org.qbittorrent.qBittorrent)$
 windowrulev2 = fullscreen,class:^(steam_app_284160)$
 windowrulev2 = float,class:^(brave-nngceckbapebfimnlniiiahkandclblb-Default)$
+windowrulev2 = float,class:^(org.gnome.NautilusPreviewer)$
+windowrulev2 = float,class:^(SAMURAI)$
 {{- if eq .chezmoi.hostname "B00T" }}
 windowrulev2 = monitor DP-2,class:^(discord)$
 windowrulev2 = noborder,class:^(discord)$
@@ -159,8 +161,6 @@ windowrulev2 = noborder, class:^(Microsoft-edge)$,title:(.*)(Outlook)
 windowrulev2 = workspace 7, class:^(discord)$
 windowrulev2 = noborder, class:^(discord)$
 {{- end }}
-windowrulev2 = float,class:^(org.gnome.NautilusPreviewer)$
-windowrulev2 = float,class:^(SAMURAI)$
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 $mainMod = SUPER
