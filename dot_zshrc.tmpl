@@ -128,7 +128,7 @@ alias "ssh"="kitty +kitten ssh"
 alias "icat"="kitten icat"
 # Custom function
 sf() {
-    sudo find / \( -type f -o -type d \) -iname "*$1*" 2>/dev/null
+    sudo locate -i "$1" | grep -E "$1"
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
