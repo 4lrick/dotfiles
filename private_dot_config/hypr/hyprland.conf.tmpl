@@ -28,6 +28,7 @@ exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 {{- if eq .chezmoi.hostname "B00T" }}
 exec-once = waybar & blueberry-tray & dex --autostart --environment hyprland
 exec-once = swaybg -i $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
+exec-once = hyprlock
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 exec-once = waybar & dex-autostart --autostart --environment hyprland
 exec-once = swaybg -i $HOME/Pictures/enso_wallpaper.jpg
@@ -186,7 +187,7 @@ bind = $mainMod, D, exec, $HOME/.config/rofi/launchers/type-1/launcher.sh
 bind = $mainMod, S, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen,
 {{- if eq .chezmoi.hostname "B00T" }}
-bind = $mainMod, L, exec, swaylock -i $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
+bind = $mainMod, L, exec, hyprlock
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 bind = $mainMod, L, exec, swaylock -i $HOME/Pictures/enso_wallpaper.jpg
 {{- end }}
