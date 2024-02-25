@@ -7,7 +7,11 @@ general {
 
 background {
     monitor =
+    {{- if eq .chezmoi.hostname "B00T" }}
+    path = $HOME/Pictures/Archlinux wallpaper ASCII/Red ASCII LOGO Small.png
+    {{- else if eq .chezmoi.hostname "XPS-9510" }}
     path = screenshot
+    {{- end }}
     color = rgba(0, 0, 0, 0)
     blur_passes = 5 # 0 disables blurring
     blur_size = 3
