@@ -26,6 +26,7 @@ function M.config()
 			"css",
 			"dockerfile",
 			"html",
+            "javascript",
 			"json",
 			"lua",
 			"make",
