@@ -28,8 +28,8 @@ keymap("n", "<leader>bp", ":bprevious<CR>", opts)
 -- Clear highlights
 keymap("n", "<leader>H", ":nohlsearch<CR>", opts)
 
--- Remove macro key since I don't use it
-vim.keymap.set('n', "q", "<nop>", { silent = true })
+-- Remove macro
+keymap("n", "q", "<nop>", opts)
 
 -- Insert --
 -- Press jk fast to exit insert mode
@@ -45,24 +45,3 @@ keymap("i", "<C-Del>", "<C-o>dw", opts)
 -- Visual --
 -- Delete current selection and paste while keeping original text
 keymap("v", "p", "P", opts)
-
--- Plugins
-
--- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-
--- Alpha
-keymap("n", "<leader>;", ":Alpha<CR>", opts)
-
--- Lazygit
-keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
-
--- Null-ls
-keymap("n", "<leader>F", ":lua vim.lsp.buf.format()<CR>", opts)
-
--- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fn", ":Telescope notify<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)

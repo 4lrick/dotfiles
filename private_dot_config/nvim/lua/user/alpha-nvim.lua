@@ -45,6 +45,7 @@ function M.config()
 	}
 
 	alpha.setup(dashboard.config)
+    vim.keymap.set("n", "<leader>;", ":Alpha<CR>")
 end
 
 return M

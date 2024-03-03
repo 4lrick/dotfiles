@@ -6,7 +6,6 @@ local M = {
 function M.config()
 	require("nvim-autopairs").setup({
 		check_ts = true,
-		disable_filetype = { "TelescopePrompt" },
 		fast_wrap = {
 			map = "<M-e>",
 			chars = { "{", "[", "(", '"', "'" },

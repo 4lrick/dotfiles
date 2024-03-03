@@ -30,6 +30,7 @@ function M.config()
 		vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
 		vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
 		vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+		vim.keymap.set("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 	end
 
 	-- if you only want these mappings for toggle term use term://*toggleterm#* instead

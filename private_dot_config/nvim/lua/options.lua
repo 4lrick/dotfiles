@@ -6,7 +6,7 @@ vim.opt.ignorecase    = true		        -- Ignore case in search patterns
 vim.opt.number        = true		        -- Print the line number in front of each line
 vim.opt.scrolloff     = 10                  -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.shiftwidth    = 4		            -- Number of spaces to use for each step of (auto)indent
-vim.opt.sidescrolloff = 10                  -- The minimal number of screen columns to keep to the left and to the right of the cursor
+vim.opt.sidescrolloff = 100                 -- The minimal number of screen columns to keep to the left and to the right of the cursor
 vim.opt.signcolumn    = "yes"               -- When and how to draw the signcolumn (yes = always)
 vim.opt.smartcase     = true		        -- Override the 'ignorecase' option if the search pattern contains upper case characters
 vim.opt.smartindent   = true		        -- Do smart autoindenting when starting a new line

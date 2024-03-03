@@ -4,12 +4,8 @@ local M = {
 	priority = 1000,
 }
 
-M.name = "tokyonight-night"
 function M.config()
-	local status_ok, _ = pcall(vim.cmd.colorscheme, M.name)
-	if not status_ok then
-		return
-	end
+	vim.cmd.colorscheme("tokyonight-night")
 end
 
 return M

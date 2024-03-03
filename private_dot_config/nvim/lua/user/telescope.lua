@@ -29,6 +29,15 @@ function M.config()
 			},
 		},
 	})
+
+	local keymap = vim.keymap.set
+	keymap("n", "<leader>ff", ":Telescope find_files<CR>")
+	keymap("n", "<leader>ft", ":Telescope live_grep<CR>")
+	keymap("n", "<leader>fn", ":Telescope notify<CR>")
+	keymap("n", "<leader>fp", ":Telescope projects<CR>")
+	keymap("n", "<leader>fb", ":Telescope buffers<CR>")
+	keymap("n", "<leader>sh", ":Telescope help_tags<CR>")
+	keymap("n", "<leader>sk", ":Telescope keymaps<CR>")
 end
 
 return M

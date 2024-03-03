@@ -1,10 +1,10 @@
 local M = {
 	"numToStr/Comment.nvim",
-	event = { "BufRead", "BufNewFile" },
+	lazy = false,
 }
 
 function M.config()
-	require("Comment").setup()
+	require("Comment").setup(vim.api.nvim_command("set commentstring=#%s"))
 end
 
 return M
