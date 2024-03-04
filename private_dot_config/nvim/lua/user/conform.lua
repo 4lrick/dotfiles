@@ -6,7 +6,7 @@ local M = {
 		{
 			"<leader>F",
 			function()
-				require("conform").format({ async = true, lsp_fallback = true })
+				require("conform").format({ async = true, lsp_fallback = true, quiet = true })
 			end,
 			mode = "",
 			desc = "Format buffer",
