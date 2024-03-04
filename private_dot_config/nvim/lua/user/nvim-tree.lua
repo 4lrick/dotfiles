@@ -22,7 +22,7 @@ function M.config()
 		},
 	})
 
-	vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+	vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
 end
 
 return M

@@ -1,5 +1,7 @@
--- Automatically close tab/vim when nvim-tree is the last window in the tab
-vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
+-- Automatically close nvim-tree when is the last window
+vim.api.nvim_create_autocmd({"QuitPre"}, {
+    callback = function() vim.cmd("NvimTreeClose") end,
+})
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	desc = "Highlight on yank",
