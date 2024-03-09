@@ -6,10 +6,10 @@ monitor=DP-1, 1920x1080@75, 3840x0, 1
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 monitor=eDP-1, 1920@1200, 0x0, 1
 
-## Mirror
+# Mirror
 monitor=,preferred,auto,1,mirror,eDP-1
 
-## Extend
+# Extend
 # monitor=,preferred,auto,1
 {{- end }}
 
@@ -139,7 +139,8 @@ misc {
 
 # Example per-device config
 # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
-device:epic-mouse-v1 {
+device {
+    name = epic-mouse-v1
     sensitivity = -0.5
 }
 
