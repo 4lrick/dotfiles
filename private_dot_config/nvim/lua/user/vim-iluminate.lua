@@ -6,6 +6,7 @@ local M = {
 function M.config()
 	local illuminate = require("illuminate")
 	illuminate.configure({
+		large_file_cutoff = 5000,
 		providers = {
 			"lsp",
 			"treesitter",
