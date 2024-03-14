@@ -30,7 +30,7 @@ function M.config()
 		},
 	})
 
-	vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { silent = true })
+	vim.keymap.set("n", "<leader>e", ":Neotree toggle reveal_force_cwd<CR>", { silent = true })
 end
 
 return M
