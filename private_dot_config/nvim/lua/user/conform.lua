@@ -22,6 +22,9 @@ M.config = function()
 			cpp = { "clang_format" },
 			lua = { "stylua" },
 			javascript = { "prettier" },
+			typescript = { "prettier" },
+			javascriptreact = { "prettier" },
+			typescriptreact = { "prettier" },
 		},
 	})
 end
