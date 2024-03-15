@@ -26,7 +26,7 @@ function M.config()
 			filtered_items = {
 				hide_dotfiles = false,
 			},
-			bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
+			bind_to_cwd = false, -- true creates a 2-way binding between vim's cwd and neo-tree's root
 		},
 	})
 
