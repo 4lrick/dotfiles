@@ -128,7 +128,7 @@ alias "ssh"="kitty +kitten ssh"
 alias "icat"="kitten icat"
 # Custom function
 sf() {
-    sudo updatedb && query="$1" && locate -i "$query" | fzf --query="$query" --bind "ctrl-r:reload:(sudo updatedb && locate -i '$(fzf --query=$query)')"
+    sudo updatedb && query="$1" && sudo locate -i "$query" | fzf --query="$query" --bind "ctrl-r:reload:(sudo updatedb && sudo locate -i '$(fzf --query=\"$query\")')"
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
