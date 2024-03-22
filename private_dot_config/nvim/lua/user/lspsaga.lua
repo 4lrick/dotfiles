@@ -15,6 +15,12 @@ function M.config()
 		lightbulb = {
 			virtual_text = false,
 		},
+		rename = {
+			auto_save = true,
+			keys = {
+				quit = "q",
+			},
+		},
 	})
 
 	local opts = { noremap = true, silent = true }

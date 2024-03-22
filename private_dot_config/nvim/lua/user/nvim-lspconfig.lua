@@ -1,7 +1,6 @@
 local M = {
 	"neovim/nvim-lspconfig",
-	lazy = false,
-	event = { "BufReadPre" },
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		{
 			"hrsh7th/cmp-nvim-lsp",
@@ -16,24 +15,21 @@ function M.config()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 	capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
-	local function lsp_keymaps(bufnr)
-		local opts = { buffer = bufnr, noremap = true, silent = true }
-		local keymap = vim.keymap.set
-		keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-		keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-		keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-		keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-		keymap("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
-		keymap("n", "<leader>lI", "<cmd>Mason<CR>", opts)
-		keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
-		keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
-		keymap("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-		keymap("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-	end
+	local opts = { noremap = true, silent = true }
+	local keymap = vim.keymap.set
+	keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+	keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	keymap("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
+	keymap("n", "<leader>lI", "<cmd>Mason<CR>", opts)
+	keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
+	keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
+	keymap("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	keymap("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
 	local lspconfig = require("lspconfig")
-	local on_attach = function(client, bufnr)
-		lsp_keymaps(bufnr)
+	local on_attach = function(client)
 		require("illuminate").on_attach(client)
 	end
 
