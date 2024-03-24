@@ -7,7 +7,7 @@ while [ $SECONDS -lt $duration ]; do
     {{- if eq .chezmoi.hostname "B00T" }}
     temperature=$(sensors | awk '/corsaircpro-hid-3-d/,/^$/' && sensors | awk '/k10temp-pci-00c3/,/^$/')
     {{- else if eq .chezmoi.hostname "XPS-9510" }}
-    temperature=$(sensors)
+    temperature=$(sensors | awk '/iwlwifi_1-virtual-0/,/^$/' && sensors | awk '/dell_ddv-virtual-0/,/^$/')
     {{- end }}
     notify-send -r "$notification_id" "Current temperature" "\n$temperature"
     sleep 0.5
