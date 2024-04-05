@@ -18,7 +18,7 @@ function M.config()
 		rename = {
 			auto_save = true,
 			keys = {
-				quit = "q",
+				quit = "<ESC>",
 			},
 		},
 	})
