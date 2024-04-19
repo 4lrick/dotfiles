@@ -52,8 +52,8 @@
         "format-icons": ["", "", "", "", ""],
     },
     "custom/kernel": {
-        "exec": "uname -r",
-        "interval": "once",
+        "exec": "uname -r; awk '{print int($1/3600)\":\"int(($1%3600)/60)\":\"int($1%60)}' /proc/uptime",
+        "interval": 1,
         {{- if eq .chezmoi.hostname "B00T" }}
         "format": "   {} ",
         {{- else if eq .chezmoi.hostname "XPS-9510" }}
