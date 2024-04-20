@@ -52,7 +52,7 @@
         "format-icons": ["", "", "", "", ""],
     },
     "custom/kernel": {
-        "exec": "uname -r; awk '{print int($1/3600)\":\"int(($1%3600)/60)\":\"int($1%60)}' /proc/uptime",
+        "exec": "uname -r; awk '{printf "%02d:%02d:%02d", int($1/3600), int(($1%3600)/60), int($1%60)}' /proc/uptime",
         "interval": 1,
         {{- if eq .chezmoi.hostname "B00T" }}
         "format": "   {} ",
