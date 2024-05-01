@@ -101,6 +101,7 @@ $env.NU_PLUGIN_DIRS = [
 
 # User configuration
 $env.EDITOR = "nvim"
+$env.MANPAGER = "nvim +Man!"
 $env.SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/gcr/ssh"
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 
