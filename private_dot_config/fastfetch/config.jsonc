@@ -1,0 +1,69 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "display": {
+        "separator": "    "
+    },
+    "modules": [
+        "title",
+        {
+            "type": "separator",
+            "string": "🭸"
+        },
+        {
+            "type": "os",
+            "key": "OS      ",
+            "format": "{2}"
+        },
+        {
+            "type": "host",
+            "key": "Host    ",
+            "format": "{/2}{-}{/}{2}{?3}"
+        },
+        {
+            "type": "kernel",
+            "key": "Kernel  ",
+            "format": "{1} {2}"
+        },
+        {
+            "type": "uptime",
+            "key": "Uptime  ",
+            "format": "{?1} days {?}{?2}{2} hours {?}{3} mins {?4}{4} secs"
+        },
+        "break",
+        "packages",
+        {
+            "type": "wm",
+            "key": "WM/DE   ",
+            "format": "{1}"
+        },
+        {
+            "type": "shell",
+            "key": "Shell   ",
+            "format": "{6}"
+        },
+        {
+            "type": "terminal",
+            "key": "Terminl ",
+            "format": "{5}"
+        },
+        "break",
+        {
+            "type": "cpu",
+            "key": "CPU     ",
+            "format": "{1}"
+        },
+        {
+            "type": "gpu",
+            "key": "GPU     ",
+            "format": "{1} {2}"
+        },
+        {
+            "type": "memory",
+            "key": "Memory  ",
+            "format": "{1} / {2} ({3})"
+        },
+        "break",
+        "colors",
+        "break"
+    ]
+}
