@@ -99,6 +99,7 @@ $env.NU_PLUGIN_DIRS = [
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
+# User configuration
 $env.EDITOR = "nvim"
 $env.SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/gcr/ssh"
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
