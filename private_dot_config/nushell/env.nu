@@ -100,7 +100,7 @@ $env.NU_PLUGIN_DIRS = [
 # source ($nu.default-config-dir | path join 'custom.nu')
 
 $env.EDITOR = "nvim"
-$env.SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/ssh-agent.socket"
+$env.SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/gcr/ssh"
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 
 mkdir ~/.cache/carapace
