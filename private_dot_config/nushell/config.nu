@@ -899,7 +899,7 @@ alias ssh = kitty +kitten ssh
 alias icat = kitten icat 
 
 def sf [query: string] {
-    sudo updatedb; sudo locate -i $query | fzf --query $query --bind 'ctrl-r:reload:(sudo locate -i "$(fzf --query $query)")'
+    sudo updatedb; sudo locate -i $query | fzf --query $query --bind 'ctrl-r:reload:(sudo locate -i (fzf --query {q}))'
 }
 
 def --env yy [...args] {
