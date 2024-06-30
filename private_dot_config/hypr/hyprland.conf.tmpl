@@ -310,4 +310,70 @@ plugin {
         gesture_distance = 100 # how far is the "max"
         gesture_positive = true # positive = swipe down. Negative = swipe up.
     }
+    dynamic-cursors {
+        # enables the plugin
+        enabled = true
+
+        # sets the cursor behaviour, supports these values:
+        # tilt   - tilt the cursor based on x-velocity
+        # rotate - rotate the cursor based on movement direction
+        # none   - do not change the cursors behaviour
+        mode = tilt
+
+        # minimum angle difference in degrees after which the shape is changed
+        # smaller values are smoother, but more expensive for hw cursors
+        threshold = 2
+
+        # for mode = rotate
+        rotate {
+
+            # length in px of the simulated stick used to rotate the cursor
+            # most realistic if this is your actual cursor size
+            length = 20
+
+            # clockwise offset applied to the angle in degrees
+            # this will apply to ALL shapes
+            offset = 0.0
+        }
+
+        # for mode = tilt
+        tilt {
+
+            # controls how powerful the tilt is, the lower the more power
+            # this value controls at which speed (px/s) the full tilt is reached
+            limit = 5000
+
+            # relationship between speed and tilt, supports these vaules:
+            # linear             - a linear function is used
+            # quadratic          - a quadratic function is used (most realistic to actual air drag)
+            # negative_quadratic - negative version of the quadratic one, feels more aggressive
+            function = negative_quadratic
+        }
+
+        # enable shake to find
+        # magnifies the cursor if its is being shaken
+        shake = true
+
+        # for when shake = true
+        shake {
+
+            # controls how soon a shake is detected
+            # lower values mean sooner
+            threshold = 2.0
+
+            # controls how fast the cursor gets larger
+            factor = 1.0
+
+            # show cursor behaviour `tilt`, `rotate`, etc. while shaking
+            effects = true
+
+            # use nearest-neighbour (pixelated) scaling when shaking
+            # may look weird when effects are enabled
+            nearest = false
+
+            # enable ipc events for shake
+            # see #3
+            ipc = false
+        }
+    }
 }
