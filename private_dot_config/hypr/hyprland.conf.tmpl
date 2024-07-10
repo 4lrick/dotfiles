@@ -5,10 +5,10 @@ monitor=HDMI-A-1, 1920x1080@144, 1920x0, 1
 monitor=DP-1, 1920x1080@75, 3840x0, 1
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 # Mirror
-monitor=eDP-1,preferred,auto,1,mirror
+# monitor=eDP-1,preferred,auto,1,mirror
 
 # Extend
-# monitor=,preferred,auto,1
+monitor=,preferred,auto,1
 {{- end }}
 
 {{- if eq .chezmoi.hostname "B00T" }}
@@ -182,9 +182,9 @@ windowrulev2 = float,class:^(org.gnome.Nautilus)$
 windowrulev2 = workspace 2, class:^(org.gnome.Nautilus)$
 windowrulev2 = workspace 5, class:^(Microsoft Teams - Preview)$
 windowrulev2 = noborder, class:^(Microsoft Teams - Preview)$
-windowrulev2 = workspace 6, class:^(Microsoft-edge)$,title:(.*)(Outlook)
-windowrulev2 = noborder, class:^(Microsoft-edge)$,title:(.*)(Outlook)
-windowrulev2 = maximize, class:^(Microsoft-edge)$,title:(.*)(Outlook)
+windowrulev2 = workspace 6, class:^(brave-pkooggnaalmfkidjmlhoelhdllpphaga-Default)$,title:(.*)(Outlook)
+windowrulev2 = noborder, class:^(brave-pkooggnaalmfkidjmlhoelhdllpphaga-Default)$,title:(.*)(Outlook)
+windowrulev2 = maximize, class:^(brave-pkooggnaalmfkidjmlhoelhdllpphaga-Default)$,title:(.*)(Outlook)
 windowrulev2 = workspace 7, class:^(discord)$
 windowrulev2 = noborder, class:^(discord)$
 {{- end }}
