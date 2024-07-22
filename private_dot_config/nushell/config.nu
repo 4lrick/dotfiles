@@ -144,7 +144,12 @@ let carapace_completer = {|spans: list<string>|
 }
 
 let zoxide_completer = {|spans|
-    $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
+    let results = $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
+    if ($results | is-empty) {
+        do $carapace_completer $spans
+    } else {
+        $results
+    }
 }
 
 # This completer will use carapace by default
