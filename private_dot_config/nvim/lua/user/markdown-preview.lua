@@ -1,10 +1,23 @@
 local M = {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function()
-        vim.fn["mkdp#util#install"]()
-    end,
+	"toppair/peek.nvim",
+	event = { "VeryLazy" },
+	build = "deno task --quiet build:fast",
 }
+
+function M.config()
+	require("peek").setup({
+		auto_load = true,
+		close_on_bdelete = true,
+		syntax = true,
+		theme = "dark",
+		update_on_change = true,
+		app = "browser",
+		filetype = { "markdown" },
+		throttle_at = 200000,
+		throttle_time = "auto",
+	})
+	vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+	vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+end
 
 return M
