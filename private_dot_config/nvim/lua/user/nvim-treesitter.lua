@@ -25,6 +25,7 @@ function M.config()
 			"cpp",
 			"css",
 			"dockerfile",
+			"gdscript",
 			"html",
             "javascript",
 			"json",

@@ -49,6 +49,13 @@ function M.config()
 		lspconfig[server].setup(Opts)
 	end
 
+	if lspconfig.gdscript then
+		lspconfig.gdscript.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+	end
+
 	local signs = {
 		{ name = "DiagnosticSignError", text = "" },
 		{ name = "DiagnosticSignWarn", text = "" },
