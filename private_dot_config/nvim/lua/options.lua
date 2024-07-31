@@ -1,6 +1,6 @@
 vim.opt.autoindent    = true		        -- Copy indent from current line when starting a new line
 vim.opt.clipboard     = "unnamedplus"    	-- Use system clipboard
-vim.opt.expandtab     = true		        -- In Insert mode: Use the appropriate number of spaces to insert a <Tab>
+vim.opt.expandtab     = false		        -- In Insert mode: Use the appropriate number of spaces to insert a <Tab>
 vim.opt.hlsearch      = true		        -- highlight search pattern
 vim.opt.ignorecase    = true		        -- Ignore case in search patterns
 vim.opt.number        = true		        -- Print the line number in front of each line

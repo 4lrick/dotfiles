@@ -6,6 +6,7 @@ M.servers = {
 	"clangd",
 	"cssls",
 	"emmet_language_server",
+	"gdscript",
 	"html",
 	"jsonls",
 	"lua_ls",
