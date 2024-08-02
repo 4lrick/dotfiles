@@ -43,7 +43,7 @@
         },
         {
             "type": "terminal",
-            "key": "Terminl ",
+            "key": "Terminal ",
             "format": "{5}"
         },
         "break",
