@@ -25,6 +25,7 @@ workspace=3, monitor:DP-1,3
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = hyprpm reload -n
 exec-once = wlsunset -l 44.837927 -L -0.579294
+exec-once = $HOME/.config/hypr/scripts/firefox-bitwarden-resize.sh
 {{- if eq .chezmoi.hostname "B00T" }}
 exec-once = waybar & dex --autostart --environment hyprland
 exec-once = swaybg -i $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
@@ -170,8 +171,7 @@ device {
 # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
 # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 windowrulev2 = noborder,class:^(brave-browser)$
-windowrulev2 = noborder,class:^(firefox)$
-windowrulev2 = float,class:(firefox),title:^(Extension: \(Bitwarden - Free Password Manager\))
+windowrulev2 = noborder,initialClass:^(Mozilla Firefox)$
 windowrulev2 = noborder,class:^(org.qbittorrent.qBittorrent)$
 windowrulev2 = fullscreen,class:^(steam_app_284160)$
 windowrulev2 = float,class:^(brave-nngceckbapebfimnlniiiahkandclblb-Default)$
