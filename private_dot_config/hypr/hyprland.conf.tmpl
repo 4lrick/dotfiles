@@ -144,6 +144,7 @@ misc {
 
 binds {
     workspace_back_and_forth = true
+	disable_keybind_grabbing = false
 }
 
 # Example per-device config
@@ -180,8 +181,8 @@ windowrulev2 = noborder,class:^(vesktop)$
 windowrulev2 = float,class:^(org.gnome.Nautilus)$
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 windowrulev2 = workspace 2, class:^(org.gnome.Nautilus)$
-windowrulev2 = workspace 5, class:^(Microsoft Teams - Preview)$
-windowrulev2 = noborder, class:^(Microsoft Teams - Preview)$
+windowrulev2 = workspace 5, class:^(teams-for-linux)$
+windowrulev2 = noborder, class:^(teams-for-linux)$
 windowrulev2 = workspace 6, class:^(brave-pkooggnaalmfkidjmlhoelhdllpphaga-Default)$,title:(.*)(Outlook)
 windowrulev2 = noborder, class:^(brave-pkooggnaalmfkidjmlhoelhdllpphaga-Default)$,title:(.*)(Outlook)
 windowrulev2 = maximize, class:^(brave-pkooggnaalmfkidjmlhoelhdllpphaga-Default)$,title:(.*)(Outlook)
