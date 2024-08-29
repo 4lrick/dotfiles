@@ -77,7 +77,11 @@ input {
 
     touchpad {
         natural_scroll = true
+    	{{- if eq .chezmoi.hostname "B00T" }}
         disable_while_typing = true
+    	{{- else if eq .chezmoi.hostname "XPS-9510" }}
+        disable_while_typing = false
+    	{{- end }}
         scroll_factor = 0.5
         # middle_button_emulation = true
         tap-to-click = true
