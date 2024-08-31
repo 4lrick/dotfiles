@@ -24,14 +24,15 @@ workspace=3, monitor:DP-1,3
 # exec-once = waybar & hyprpaper & firefox
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = hyprpm reload -n
-exec-once = wlsunset -l 44.837927 -L -0.579294
 exec-once = $HOME/.config/hypr/scripts/firefox-bitwarden-resize.sh
 {{- if eq .chezmoi.hostname "B00T" }}
+exec-once = wlsunset -l 44.837927 -L -0.579294
 exec-once = waybar & dex --autostart --environment hyprland
 exec-once = swaybg -i $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
 exec-once = hyprctl switchxkblayout corne-keyboard 1; hyprlock; hyprctl switchxkblayout corne-keyboard 0
 exec-once = sleep 5 && vesktop
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
+exec-once = wlsunset -l 46.813118 -L -71.207469
 exec-once = waybar & dex-autostart --autostart --environment hyprland
 exec-once = swaybg -i $HOME/Pictures/enso_wallpaper.jpg
 exec-once = hypridle
