@@ -1,6 +1,5 @@
 {
     "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-	"auto_upgrade": true,
     "blocks": [
       {
         "alignment": "left",
@@ -115,5 +114,7 @@
       }
     ],
     "final_space": true,
-    "version": 2
+    "version": 2,
+	"auto_upgrade": true,
+	"disable_notice": true
   }
