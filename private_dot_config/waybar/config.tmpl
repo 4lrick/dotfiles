@@ -93,7 +93,7 @@
 			"false": " 󰌐 ",
 		},
 		"return-type": "json",
-		"interval": 1,
+		"interval": "once",
     	"exec": "echo \"{\\\"alt\\\":\\\"$(cat ${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/keyboard.status 2>/dev/null || echo true)\\\"}\"",
 		"on-click": "~/.config/polybar/scripts/toggle_keyboard.sh",
 		"tooltip": true,
