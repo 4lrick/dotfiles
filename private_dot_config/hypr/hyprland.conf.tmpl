@@ -45,13 +45,17 @@ exec-once = flatpak run io.github.spacingbat3.webcord
 # source = ~/.config/hypr/myColors.conf
 
 # Some default env vars.
-env = XCURSOR_SIZE,24
 
 {{- if eq .chezmoi.hostname "B00T" }}
+env = XCURSOR_SIZE,24
 env = LIBVA_DRIVER_NAME,nvidia
 env = XDG_SESSION_TYPE,wayland
 env = GBM_BACKEND,nvidia-drm
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+{{- else if eq .chezmoi.hostname "XPS-9510" }}
+env = XCURSOR_THEME,XCursor-Pro-Dark
+env = XCURSOR_SIZE,34
+{{- end }}
 
 cursor {
     no_hardware_cursors = true
@@ -201,6 +205,10 @@ windowrulev2 = workspace 7, class:^(WebCord)$
 windowrulev2 = noborder, class:^(WebCord)$
 windowrulev2 = workspace 8, class:^(brave-ejhkdoiecgkmdpomoahkdihbcldkgjci-Default)$
 windowrulev2 = noborder, class:^(brave-ejhkdoiecgkmdpomoahkdihbcldkgjci-Default)$
+windowrulev2 = float, initialTitle:^(Picture-in-Picture)$
+windowrulev2 = pin, initialTitle:^(Picture-in-Picture)$
+windowrulev2 = size 625 352, initialTitle:^(Picture-in-Picture)$
+windowrulev2 = move onscreen 100% 2.45%, initialTitle:^(Picture-in-Picture)$
 {{- end }}
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -218,6 +226,7 @@ bind = $mainMod, D, exec, $HOME/.config/rofi/launchers/type-1/launcher.sh
 bind = $mainMod, S, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen,
 bind = $mainMod, L, exec, hyprctl switchxkblayout corne-keyboard 1; hyprlock; hyprctl switchxkblayout corne-keyboard 0
+bind = $mainMod, S, pin
 
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l
