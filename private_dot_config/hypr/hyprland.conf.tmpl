@@ -207,6 +207,8 @@ windowrulev2 = monitor 0, class:^(flameshot)$
 {{- if eq .chezmoi.hostname "B00T" }}
 windowrulev2 = monitor DP-2,class:^(vesktop)$
 windowrulev2 = noborder,class:^(vesktop)$
+windowrulev2 = monitor DP-2,class:^(legcord)$
+windowrulev2 = noborder, class:^(legcord)$
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 windowrulev2 = workspace 5 silent, class:^(teams-for-linux)$
 windowrulev2 = noborder, class:^(teams-for-linux)$
