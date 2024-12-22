@@ -10,8 +10,13 @@ toggle_keyboard() {
     hyprctl keyword "$VAR" "$1" -r
 }
 
-if [[ ! -f "$FILE" || $(< "$FILE") == false ]]; then
-    toggle_keyboard true
-else
+if [[ ! -f "$FILE" ]]; then
     toggle_keyboard false
+else
+    current_status=$(< "$FILE")
+    if [[ "$current_status" == "true" ]]; then
+        toggle_keyboard false
+    else
+        toggle_keyboard true
+    fi
 fi
