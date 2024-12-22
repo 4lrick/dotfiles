@@ -21,10 +21,12 @@ M.config = function()
 			c = { "clang_format" },
 			cpp = { "clang_format" },
 			lua = { "stylua" },
-			javascript = { "prettier" },
-			typescript = { "prettier" },
-			javascriptreact = { "prettier" },
-			typescriptreact = { "prettier" },
+			javascript = { "prettier", "eslint_d" },
+			typescript = { "prettier", "eslint_d" },
+			javascriptreact = { "prettier", "eslint_d" },
+			typescriptreact = { "prettier", "eslint_d" },
+			vue = { "prettier", "eslint_d" },
+			bash = { "shfmt" },
 		},
 	})
 end
