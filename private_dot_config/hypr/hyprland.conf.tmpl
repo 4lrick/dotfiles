@@ -187,6 +187,15 @@ windowrulev2 = float, initialTitle:^(Picture-in-Picture)$
 windowrulev2 = pin, initialTitle:^(Picture-in-Picture)$
 windowrulev2 = size 625 352, initialTitle:^(Picture-in-Picture)$
 windowrulev2 = move onscreen 100% 2.45%, initialTitle:^(Picture-in-Picture)$
+windowrulev2 = noborder, class:^(Vivaldi-stable)$
+windowrulev2 = noborder, class:^(ONLYOFFICE Desktop Editors)$
+windowrulev2 = float, class:^(clipse)$
+windowrulev2 = size 750 600, class:(clipse)
+windowrulev2 = noanim, class:^(flameshot)$
+windowrulev2 = float, class:^(flameshot)$
+windowrulev2 = move 0 0, class:^(flameshot)$
+windowrulev2 = pin, class:^(flameshot)$
+windowrulev2 = monitor 0, class:^(flameshot)$
 {{- if eq .chezmoi.hostname "B00T" }}
 windowrulev2 = monitor DP-2,class:^(vesktop)$
 windowrulev2 = noborder,class:^(vesktop)$
@@ -203,6 +212,9 @@ windowrulev2 = workspace 7, class:^(WebCord)$
 windowrulev2 = noborder, class:^(WebCord)$
 windowrulev2 = workspace 8, class:^(brave-ejhkdoiecgkmdpomoahkdihbcldkgjci-Default)$
 windowrulev2 = noborder, class:^(brave-ejhkdoiecgkmdpomoahkdihbcldkgjci-Default)$
+windowrulev2 = tile, class:^(dev.zed.Zed)$
+windowrulev2 = noborder, class:^(dev.zed.Zed)$
+windowrulev2 = noborder, class:^(zen-beta)$
 {{- end }}
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -212,10 +224,11 @@ $mainMod = SUPER
 bind = $mainMod, Return, exec, kitty
 bind = $mainMod SHIFT, A, killactive,
 bind = CTRL SHIFT, E, exec, $HOME/.config/rofi/powermenu/type-3/powermenu.sh
-bind = $mainMod SHIFT, S, exec, grim -g "$(slurp)" - | satty --filename - --early-exit --copy-command wl-copy --fullscreen --output-filename $HOME/Pictures/Screenshot\ from\ $(date '+%Y-%m-%d')\ $(date '+%H-%M-%S').png
+bind = $mainMod SHIFT, S, exec, XDG_CURRENT_DESKTOP=Sway flameshot gui --raw | wl-copy
 bind = CTRL, E, exec, nautilus
 bind = $mainMod SHIFT, Space, togglefloating,
 bind = $mainMod, D, exec, $HOME/.config/rofi/launchers/type-1/launcher.sh
+bind = $mainMod, V, exec, kitty --class clipse -e clipse
 # bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, S, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen,
