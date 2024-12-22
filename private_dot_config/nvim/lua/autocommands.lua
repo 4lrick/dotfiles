@@ -7,8 +7,8 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  callback = function()
-    vim.opt_local.formatoptions:remove({ 'r', 'o' })
-  end,
+	pattern = "*",
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "r", "o" })
+	end,
 })
