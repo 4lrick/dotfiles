@@ -22,23 +22,23 @@ workspace=3, monitor:DP-1,3
 
 # Execute apps at launch
 # exec-once = waybar & hyprpaper & firefox
-exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = hyprpm reload -n
 exec-once = $HOME/.config/hypr/scripts/firefox-bitwarden-resize.sh
+exec-once = hyprpaper
+exec-once = sleep 5 && legcord
+exec-once = clipse -listen
 {{- if eq .chezmoi.hostname "B00T" }}
+exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 44.837927 -L -0.579294
 exec-once = waybar & dex --autostart --environment hyprland
-exec-once = swaybg -i $HOME/Pictures/Archlinux\ wallpaper\ ASCII/Red\ ASCII\ LOGO\ Small.png
 exec-once = hyprctl switchxkblayout corne-keyboard 1; hyprlock; hyprctl switchxkblayout corne-keyboard 0
-exec-once = sleep 5 && vesktop
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
+exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 46.813118 -L -71.207469
 exec-once = waybar & dex-autostart --autostart --environment hyprland
-exec-once = swaybg -i $HOME/Pictures/enso_wallpaper.jpg
 exec-once = hypridle
 exec-once = thunderbird
 exec-once = flatpak run com.github.IsmaelMartinez.teams_for_linux
-exec-once = flatpak run io.github.spacingbat3.webcord
 {{- end }}
 
 # Source a file (multi-file configs)
@@ -55,6 +55,8 @@ env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 env = XCURSOR_THEME,XCursor-Pro-Dark
 env = XCURSOR_SIZE,34
+env = HYPRCURSOR_THEME,XCursor-Pro-Dark-Hyprcursor
+env = HYPRCURSOR_SIZE,34
 {{- end }}
 
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -64,7 +66,7 @@ input {
     kb_options = grp:alt_space_toggle
 
     follow_mouse = 1
-
+	focus_on_close = 1
     {{- if eq .chezmoi.hostname "B00T" }}
     sensitivity = -0.5 # -1.0 - 1.0, 0 means no modification.
     {{- else if eq .chezmoi.hostname "XPS-9510" }}
@@ -112,7 +114,9 @@ decoration {
         
     }
 
-    drop_shadow = false
+	shadow {
+    	enabled = false
+	}
 }
 
 animations {
