@@ -12,6 +12,7 @@ M.servers = {
 	"marksman",
 	"pyright",
 	"tailwindcss",
+	"ts_ls",
 	"volar",
 	"yamlls",
 }
