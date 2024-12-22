@@ -39,7 +39,7 @@
         {{- end }}
         "interval": 5,
         "format": "󰏈  {temperatureC}°C",
-        "on-click": "~/.config/polybar/scripts/temp.sh"
+        "on-click": "~/.config/polybar/scripts/temp.sh",
     },
     "battery": {
         "bat": "BAT0",
@@ -74,17 +74,7 @@
         "format-muted": "󰖁  {volume}%",
         "on-click": "amixer set Master toggle",
         "on-click-right": "pavucontrol",
-    },
-    "clock#clock2": {"tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "format": "󰃭  {:%d/%m/%Y}",
-        "on-click": "notify-send 'Calendar' \"\\n$(cal -m)\"",
-        "tooltip-format": "{calendar}",
-        "calendar": {
-                    "format": {
-                              "today":      "<span color='#CC2E2E'><b><u>{}</u></b></span>"
-                              }
-                    },
-    },
+    }, 
     {{- if eq .chezmoi.hostname "XPS-9510" }}
 	"custom/keyboard": {
 		"format": "{icon}",
@@ -93,13 +83,23 @@
 			"false": " 󰌐 ",
 		},
 		"return-type": "json",
-		"interval": "once",
+		"interval": "1",
     	"exec": "echo \"{\\\"alt\\\":\\\"$(cat ${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/keyboard.status 2>/dev/null || echo true)\\\"}\"",
 		"on-click": "~/.config/polybar/scripts/toggle_keyboard.sh",
 		"tooltip": true,
 		"tooltip-format": "Laptop keyboard: {alt}"
 	},
 	{{- end }}
+	"clock#clock2": {"tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "format": "󰃭  {:%d/%m/%Y}",
+        "on-click": "notify-send 'Calendar' \"\\n$(cal -m)\"",
+        "tooltip-format": "{calendar}",
+        "calendar": {
+        	"format": {
+            	"today": "<span color='#CC2E2E'><b><u>{}</u></b></span>"
+            }
+        },
+    },
     "clock": {
         "interval": 1,
         "format": "󱑎  {:%H:%M:%S}",
