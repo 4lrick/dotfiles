@@ -38,6 +38,7 @@ function M.config()
 			"clang-format",
 			"stylua",
 			"prettier",
+			"shfmt",
 		},
 	})
 end
