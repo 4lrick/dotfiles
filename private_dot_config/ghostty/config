@@ -16,3 +16,6 @@ window-decoration = false
 
 # Update
 auto-update = check
+
+# Shader
+# custom-shader = shaders/crt.glsl
