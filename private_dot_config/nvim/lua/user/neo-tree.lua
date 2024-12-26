@@ -4,6 +4,7 @@ local M = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 		"MunifTanjim/nui.nvim",
+		"3rd/image.nvim",
 	},
 	event = "VimEnter",
 }
@@ -27,6 +28,11 @@ function M.config()
 				hide_dotfiles = false,
 			},
 			bind_to_cwd = false, -- true creates a 2-way binding between vim's cwd and neo-tree's root
+		},
+		window = {
+			mappings = {
+				["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = true } },
+			},
 		},
 	})
 
