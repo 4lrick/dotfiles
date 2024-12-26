@@ -1,7 +1,6 @@
 # theme
 theme = kitty_theme
 
-
 # Keybindings
 keybind = ctrl+shift+i=new_split:right
 keybind = ctrl+shift+o=new_split:down
@@ -12,10 +11,8 @@ keybind = ctrl+up=goto_tab:1
 font-family = JetBrainsMono Nerd Font
 font-size = 15.5
 
-
 # Window
 window-decoration = false
-
 
 # Update
 auto-update = check
