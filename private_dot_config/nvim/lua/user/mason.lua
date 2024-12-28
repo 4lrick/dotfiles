@@ -30,10 +30,8 @@ function M.config()
 	})
 	require("mason-tool-installer").setup({
 		ensure_installed = {
-			-- linters
 			"eslint_d",
-
-			-- formatters
+			"gdtoolkit",
 			"black",
 			"clang-format",
 			"stylua",

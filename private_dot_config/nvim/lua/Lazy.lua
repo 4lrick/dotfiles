@@ -33,4 +33,5 @@ require("lazy").setup({
 	install = { colorscheme = { require("user.colorscheme").name } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
+	defaults = { lazy = true },
 })

@@ -27,6 +27,7 @@ M.config = function()
 			typescriptreact = { "prettier", "eslint_d" },
 			vue = { "prettier", "eslint_d" },
 			bash = { "shfmt" },
+			gdscript = { "gdformat" },
 		},
 	})
 end
