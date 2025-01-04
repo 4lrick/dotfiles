@@ -23,7 +23,10 @@ handle() {
 			timeout=$((SECONDS + 1))
 
 			# echo "$window_id", "$window_title"
-			hyprctl --batch "dispatch togglefloating address:0x$window_id; dispatch resizewindowpixel exact 20% 54%,address:0x$window_id; dispatch centerwindow"
+			hyprctl --batch "dispatch togglefloating address:0x$window_id; \
+			dispatch resizewindowpixel exact 25% 55%, \
+			address:0x$window_id; \
+			dispatch centerwindow"
 		fi
 		;;
 	esac
