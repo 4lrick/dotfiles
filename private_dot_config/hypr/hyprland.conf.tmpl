@@ -25,7 +25,6 @@ workspace=3, monitor:DP-1,3
 exec-once = hyprpm reload -n
 exec-once = $HOME/.config/hypr/scripts/firefox-bitwarden-resize.sh
 exec-once = hyprpaper
-exec-once = legcord
 exec-once = clipse -listen
 {{- if eq .chezmoi.hostname "B00T" }}
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -37,6 +36,7 @@ exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 46.813118 -L -71.207469
 exec-once = waybar & dex-autostart --autostart --environment hyprland
 exec-once = hypridle
+exec-once = sleep 1 && legcord
 exec-once = thunderbird
 exec-once = flatpak run com.github.IsmaelMartinez.teams_for_linux
 {{- end }}
@@ -212,8 +212,8 @@ windowrulev2 = noborder, class:^(legcord)$
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 windowrulev2 = workspace 5 silent, class:^(teams-for-linux)$
 windowrulev2 = noborder, class:^(teams-for-linux)$
-windowrulev2 = workspace 6 silent, class:^(org.mozilla.thunderbird)$
-windowrulev2 = noborder, class:^(org.mozilla.thunderbird)$
+windowrulev2 = workspace 6 silent, class:^(net.thunderbird.Thunderbird)$
+windowrulev2 = noborder, class:^(net.thunderbird.Thunderbird)$
 windowrulev2 = workspace 7 silent, class:^(discord)$
 windowrulev2 = noborder, class:^(discord)$
 windowrulev2 = workspace 7 silent, class:^(WebCord)$
