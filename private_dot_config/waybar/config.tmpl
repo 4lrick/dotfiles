@@ -39,7 +39,8 @@
         {{- if eq .chezmoi.hostname "B00T" }}
         "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
         {{- else if eq .chezmoi.hostname "XPS-9510" }}
-        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon8/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon8/temp1_input",
+        // "hwmon-path": "/sys/class/hwmon/hwmon9/temp1_input",
         {{- end }}
         "interval": 5,
         "format": "󰏈  {temperatureC}°C",
@@ -56,7 +57,7 @@
         "format-icons": ["", "", "", "", ""],
     },
     "custom/kernel": {
-        "exec": "uname -r; awk '{printf \"%02d:%02d:%02d\", int($1/3600), int(($1%3600)/60), int($1%60)}' /proc/uptime",
+        "exec": "uname -r | cut -d '-' -f1; awk '{printf \"%02d:%02d:%02d\", int($1/3600), int(($1%3600)/60), int($1%60)}' /proc/uptime",
         "interval": 1,
         {{- if eq .chezmoi.hostname "B00T" }}
         "format": "   {} ",
