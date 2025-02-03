@@ -16,3 +16,4 @@ keybind = shift+down=goto_split:next
 keybind = shift+right=goto_split:right
 keybind = shift+left=goto_split:left
 keybind = ctrl+shift+h=write_screen_file:open
+keybind = ctrl+shift+plus=increase_font_size:1
