@@ -36,9 +36,9 @@ exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 46.813118 -L -71.207469
 exec-once = waybar & dex-autostart --autostart --environment hyprland
 exec-once = hypridle
-exec-once = sleep 1 && legcord
 exec-once = thunderbird
 exec-once = flatpak run com.github.IsmaelMartinez.teams_for_linux
+exec-once = sleep 2 && legcord
 {{- end }}
 
 # Source a file (multi-file configs)
@@ -210,8 +210,8 @@ windowrulev2 = noborder,class:^(vesktop)$
 windowrulev2 = monitor DP-2,class:^(legcord)$
 windowrulev2 = noborder, class:^(legcord)$
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
-windowrulev2 = workspace 5 silent, class:^(teams-for-linux)$
-windowrulev2 = noborder, class:^(teams-for-linux)$
+windowrulev2 = workspace 5 silent, class:^(com.github.IsmaelMartinez.teams_for_linux)$
+windowrulev2 = noborder, class:^(com.github.IsmaelMartinez.teams_for_linux)$
 windowrulev2 = workspace 6 silent, class:^(net.thunderbird.Thunderbird)$
 windowrulev2 = noborder, class:^(net.thunderbird.Thunderbird)$
 windowrulev2 = workspace 7 silent, class:^(discord)$
