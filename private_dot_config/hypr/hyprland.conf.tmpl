@@ -307,8 +307,8 @@ bind = ,XF86AudioPrev, exec, playerctl previous
 
 {{- if eq .chezmoi.hostname "XPS-9510" }}
 # Brightness control
-bind = ,XF86MonBrightnessUp,exec, light -A 5
-bind = ,XF86MonBrightnessDown, exec, light -U 5
+bind = ,XF86MonBrightnessUp, exec, light -A 5 && notify-send -r 9999 "Brightness" "$(light -G | awk '{print int($1)}')%" 
+bind = ,XF86MonBrightnessDown, exec, light -U 5 && notify-send -r 9999 "Brightness" "$(light -G | awk '{print int($1)}')%"
 {{- end }}
 
 
