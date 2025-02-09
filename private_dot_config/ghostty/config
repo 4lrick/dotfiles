@@ -4,6 +4,7 @@ font-family = JetBrainsMono Nerd Font
 font-size = 15.5
 window-decoration = false
 unfocused-split-opacity = 1
+confirm-close-surface = false
 auto-update = check
 # custom-shader = shaders/crt.glsl
 
