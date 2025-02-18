@@ -8,6 +8,7 @@ toggle_keyboard() {
     echo "$1" > "$FILE"
     notify-send -u normal "$([[ $1 == true ]] && echo "Enabling" || echo "Disabling") laptop keyboard"
     hyprctl keyword "$VAR" "$1" -r
+    hyprctl keyword input:touchpad:disable_while_typing "$([[ $1 == true ]] && echo true || echo false)"
 }
 
 if [[ ! -f "$FILE" ]]; then
