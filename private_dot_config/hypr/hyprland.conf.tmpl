@@ -30,7 +30,7 @@ exec-once = clipse -listen
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 44.837927 -L -0.579294
 exec-once = waybar & dex --autostart --environment hyprland
-exec-once = hyprctl switchxkblayout corne-keyboard 1; hyprlock; hyprctl switchxkblayout corne-keyboard 0
+exec-once = hyprlock
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 46.813118 -L -71.207469
@@ -243,7 +243,7 @@ bind = $mainMod, V, exec, kitty --class clipse -e clipse
 # bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, S, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen,
-bind = $mainMod, L, exec, hyprctl switchxkblayout corne-keyboard 1; hyprlock; hyprctl switchxkblayout corne-keyboard 0
+bind = $mainMod, L, exec, hyprlock
 bind = $mainMod, S, pin
 
 # Move focus with mainMod + arrow keys
