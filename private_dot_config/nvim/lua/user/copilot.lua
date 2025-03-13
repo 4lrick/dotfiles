@@ -5,7 +5,9 @@ local M = {
 	enabled = true,
 }
 function M.config()
-	require("copilot").setup({})
+	require("copilot").setup({
+		filetypes = { markdown = true },
+	})
 end
 
 return M
