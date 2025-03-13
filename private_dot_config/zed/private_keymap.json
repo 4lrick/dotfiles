@@ -9,12 +9,12 @@
 	{
 		"bindings": {
 			"ctrl-\\": "workspace::ToggleBottomDock",
-			"ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-			"ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-			"ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-			"ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+			"ctrl-h": "workspace::ActivatePaneLeft",
+			"ctrl-l": "workspace::ActivatePaneRight",
+			"ctrl-k": "workspace::ActivatePaneUp",
+			"ctrl-j": "workspace::ActivatePaneDown",
 			"q": null,
-			"ctrl-shift-v": ["vim::Paste", { "preserveClipboard": true }]
+			"ctrl-shift-v": ["vim::Paste", { "preserve_clipboard": true }]
 		}
 	},
 	{
@@ -41,15 +41,15 @@
 		"bindings": {
 			"space shift-f": "editor::Format",
 			"space e": "workspace::ToggleLeftDock",
-			"space b p": "pane::ActivatePrevItem",
+			"space b p": "pane::ActivatePreviousItem",
 			"space b n": "pane::ActivateNextItem",
 			"space g g": [
-				"workspace::SendKeystrokes",
-				": new center terminal enter lazygit enter"
+				"task::Spawn",
+				{ "task_name": "lazygit", "reveal_target": "center" }
 			],
 			"space f t": "pane::DeploySearch",
 			"n": "search::SelectNextMatch",
-			"shift-n": "search::SelectPrevMatch"
+			"shift-n": "search::SelectPreviousMatch"
 		}
 	},
 	{
@@ -61,12 +61,7 @@
 	{
 		"context": "vim_mode == visual",
 		"bindings": {
-			"shift-s": [
-				"vim::PushOperator",
-				{
-					"AddSurrounds": {}
-				}
-			],
+			"shift-s": ["vim::PushAddSurrounds", {}],
 			"p": ["workspace::SendKeystrokes", "shift-p"]
 		}
 	},

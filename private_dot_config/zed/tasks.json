@@ -79,5 +79,13 @@
 		"allow_concurrent_runs": true,
 		"reveal": "always",
 		"hide": "on_success"
+	},
+	{
+		"label": "lazygit",
+		"command": "lazygit",
+		"hide": "on_success",
+		"shell": {
+			"program": "zsh"
+		}
 	}
 ]
