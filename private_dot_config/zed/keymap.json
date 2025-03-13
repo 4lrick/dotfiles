@@ -1,0 +1,80 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+	{
+		"bindings": {
+			"ctrl-\\": "workspace::ToggleBottomDock",
+			"ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+			"ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+			"ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+			"ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+			"q": null,
+			"ctrl-shift-v": ["vim::Paste", { "preserveClipboard": true }]
+		}
+	},
+	{
+		"context": "Workspace",
+		"bindings": {
+			"shift shift": "file_finder::Toggle"
+		}
+	},
+	{
+		"context": "Picker || menu",
+		"bindings": {
+			"space e": "workspace::ToggleLeftDock"
+		}
+	},
+	{
+		"context": "Editor",
+		"bindings": {
+			"ctrl-shift-i": "pane::SplitRight",
+			"ctrl-shift-o": "pane::SplitDown"
+		}
+	},
+	{
+		"context": "vim_mode == normal",
+		"bindings": {
+			"space shift-f": "editor::Format",
+			"space e": "workspace::ToggleLeftDock",
+			"space b p": "pane::ActivatePrevItem",
+			"space b n": "pane::ActivateNextItem",
+			"space g g": [
+				"workspace::SendKeystrokes",
+				": new center terminal enter lazygit enter"
+			],
+			"space f t": "pane::DeploySearch",
+			"n": "search::SelectNextMatch",
+			"shift-n": "search::SelectPrevMatch"
+		}
+	},
+	{
+		"context": "vim_mode == insert",
+		"bindings": {
+			"j k": ["workspace::SendKeystrokes", "escape"]
+		}
+	},
+	{
+		"context": "vim_mode == visual",
+		"bindings": {
+			"shift-s": [
+				"vim::PushOperator",
+				{
+					"AddSurrounds": {}
+				}
+			],
+			"p": ["workspace::SendKeystrokes", "shift-p"]
+		}
+	},
+	{
+		"context": "Terminal",
+		"bindings": {
+			"ctrl-shift-t": "workspace::NewTerminal",
+			"space g g": ["workspace::SendKeystrokes", "q exit enter"]
+		}
+	}
+]
