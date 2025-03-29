@@ -11,7 +11,7 @@ return {
 		"stevearc/dressing.nvim",
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
-		"nvim-tree/nvim-web-devicons",
+		"echasnovski/mini.icons",
 		"zbirenbaum/copilot.lua",
 		{
 			"MeanderingProgrammer/render-markdown.nvim",

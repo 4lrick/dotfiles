@@ -2,17 +2,6 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	event = "BufReadPost",
 	build = ":TSUpdate",
-
-	dependencies = {
-		{
-			"JoosepAlviste/nvim-ts-context-commentstring",
-			event = "VeryLazy",
-		},
-		{
-			"nvim-tree/nvim-web-devicons",
-			event = "VeryLazy",
-		},
-	},
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 
