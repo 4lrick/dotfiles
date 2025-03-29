@@ -2,14 +2,18 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "saghen/blink.cmp" },
 	},
 	config = function()
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
-		capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+		local capabilities = require("blink.cmp").get_lsp_capabilities({
+			textDocument = {
+				completion = {
+					completionItem = {
+						snippetSupport = true,
+					},
+				},
+			},
+		})
 
 		local opts = { noremap = true, silent = true }
 		local keymap = vim.keymap.set
@@ -33,16 +37,16 @@ return {
 
 		mason_lspconfig.setup_handlers({
 			function(server_name)
-				opts = {
+				local server_opts = {
 					capabilities = capabilities,
 				}
 
-				local require_ok, conf_opts = pcall(require, "ls_settings." .. server_name)
-				if require_ok then
-					opts = vim.tbl_deep_extend("force", conf_opts, opts)
+				local ok, custom_opts = pcall(require, "ls_settings." .. server_name)
+				if ok then
+					server_opts = vim.tbl_deep_extend("force", custom_opts, server_opts)
 				end
 
-				lspconfig[server_name].setup(opts)
+				lspconfig[server_name].setup(server_opts)
 			end,
 		})
 

@@ -1,9 +1,11 @@
 return {
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",
-	event = "InsertEnter",
+	event = "BufReadPost",
 	enabled = true,
 	opts = {
+		suggestion = { enabled = false },
+		panel = { enabled = false },
 		filetypes = { markdown = true },
 	},
 }
