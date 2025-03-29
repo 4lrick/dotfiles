@@ -1,12 +1,7 @@
-local M = {
+return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
+	opts = {
+		delay = 300,
+	},
 }
-
-function M.opts()
-	vim.o.timeout = true
-	vim.o.timeoutlen = 300
-	require("which-key").setup({})
-end
-
-return M

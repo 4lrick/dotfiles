@@ -1,9 +1,5 @@
-local M = {
+return {
 	"zbirenbaum/copilot-cmp",
 	event = { "InsertEnter", "LspAttach" },
+	opts = {},
 }
-function M.config()
-	require("copilot_cmp").setup()
-end
-
-return M

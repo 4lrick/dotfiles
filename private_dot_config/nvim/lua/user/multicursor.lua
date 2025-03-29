@@ -1,10 +1,9 @@
-local M = {
+return {
 	"jake-stewart/multicursor.nvim",
 	branch = "1.0",
 	event = { "BufRead", "BufNew" },
 	config = function()
 		local mc = require("multicursor-nvim")
-
 		mc.setup()
 
 		-- Add cursors above/below the main cursor.
@@ -84,5 +83,3 @@ local M = {
 		vim.api.nvim_set_hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
 	end,
 }
-
-return M

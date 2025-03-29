@@ -1,4 +1,4 @@
-local M = {
+return {
 	"akinsho/bufferline.nvim",
 	event = { "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },
 	dependencies = {
@@ -6,17 +6,13 @@ local M = {
 			"famiu/bufdelete.nvim",
 		},
 	},
-}
-
-function M.config()
-	require("bufferline").setup({
+	enabled = true,
+	opts = {
 		options = {
 			close_command = "Bdelete! %d",
 			right_mouse_command = "Bdelete! %d",
 			offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
 			separator_style = "thin",
 		},
-	})
-end
-
-return M
+	},
+}

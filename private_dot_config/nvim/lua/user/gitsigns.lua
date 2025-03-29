@@ -1,10 +1,6 @@
-local M = {
+return {
 	"lewis6991/gitsigns.nvim",
 	event = "BufReadPre",
+	enabled = true,
+	opts = {},
 }
-
-function M.config()
-	require("gitsigns").setup()
-end
-
-return M

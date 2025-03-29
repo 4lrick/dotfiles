@@ -1,13 +1,9 @@
-local M = {
+return {
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",
 	event = "InsertEnter",
 	enabled = true,
-}
-function M.config()
-	require("copilot").setup({
+	opts = {
 		filetypes = { markdown = true },
-	})
-end
-
-return M
+	},
+}

@@ -1,0 +1,7 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "_lazygit_toggle",
+        "Snacks"
+    ]
+}

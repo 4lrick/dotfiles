@@ -1,4 +1,4 @@
-local M = {
+return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	cmd = { "ConformInfo" },
@@ -12,10 +12,10 @@ local M = {
 			desc = "Format buffer",
 		},
 	},
-}
-
-M.config = function()
-	require("conform").setup({
+	---@module "conform"
+	---@diagnostic disable-next-line: undefined-doc-name
+	---@type conform.setupOpts
+	opts = {
 		formatters_by_ft = {
 			python = { "black" },
 			c = { "clang_format" },
@@ -29,7 +29,5 @@ M.config = function()
 			bash = { "shfmt" },
 			gdscript = { "gdformat" },
 		},
-	})
-end
-
-return M
+	},
+}
