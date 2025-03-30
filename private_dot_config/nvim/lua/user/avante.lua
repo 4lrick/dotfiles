@@ -1,6 +1,6 @@
 return {
 	"yetone/avante.nvim",
-	event = "VeryLazy",
+	event = { "BufReadPost", "BufNewFile" },
 	version = false,
 	opts = {
 		provider = "copilot",

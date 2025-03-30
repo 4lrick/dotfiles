@@ -1,11 +1,7 @@
 return {
 	"akinsho/bufferline.nvim",
-	event = { "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },
-	dependencies = {
-		{
-			"famiu/bufdelete.nvim",
-		},
-	},
+	event = { "BufReadPre", "BufNewFile", "BufAdd" },
+	dependencies = { "famiu/bufdelete.nvim" },
 	enabled = true,
 	opts = {
 		options = {
