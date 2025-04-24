@@ -109,8 +109,13 @@ decoration {
     rounding = 0
 
     blur {
-        enabled = false
-        
+		enabled = true
+		size = 10
+		passes = 3
+		new_optimizations = true
+		ignore_opacity = true
+		noise = 0
+		brightness = 0.90
     }
 
 	shadow {
@@ -210,6 +215,7 @@ windowrule = monitor 0, class:^(flameshot)$
 windowrule = noborder, class:^(GTK Application)$
 windowrule = stayfocused, class:(zoom), initialTitle:(menu window)
 windowrule = move cursor, class:(zoom), title:(zoom)
+windowrule = noborder, class:(zoom), title:(cc_receiver)
 windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
 {{- if eq .chezmoi.hostname "B00T" }}
 windowrule = monitor DP-2,class:^(vesktop)$
