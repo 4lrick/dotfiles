@@ -6,6 +6,8 @@ window-decoration = false
 unfocused-split-opacity = 1
 confirm-close-surface = false
 auto-update = check
+gtk-adwaita = false
+gtk-single-instance = true
 # custom-shader = shaders/crt.glsl
 
 # Keybindings
