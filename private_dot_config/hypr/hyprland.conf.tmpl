@@ -32,12 +32,13 @@ exec-once = wlsunset -l 44.837927 -L -0.579294
 exec-once = waybar & dex --autostart --environment hyprland
 exec-once = hyprlock
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
+exec-once = fcitx5 -r
 exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 46.813118 -L -71.207469
 exec-once = waybar & dex-autostart --autostart --environment hyprland
 exec-once = hypridle
 exec-once = thunderbird
-exec-once = flatpak run com.github.IsmaelMartinez.teams_for_linux
+exec-once = flatpak run com.github.IsmaelMartinez.teams_for_linux --enable-wayland-ime
 exec-once = sleep 2 && legcord
 {{- end }}
 
@@ -183,6 +184,7 @@ device {
 # windowrule = float,class:^(kitty)$,title:^(kitty)$
 # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 windowrule = noborder,class:^(brave-browser)$
+windowrule = noborder,class:^(Brave-browser)$
 windowrule = noborder,initialTitle:^(Mozilla Firefox)$
 windowrule = noborder,class:^(org.qbittorrent.qBittorrent)$
 windowrule = fullscreen,class:^(steam_app_284160)$
@@ -248,7 +250,7 @@ $mainMod = SUPER
 bind = $mainMod, Return, exec, ghostty
 bind = $mainMod SHIFT, A, killactive,
 bind = CTRL SHIFT, E, exec, $HOME/.config/rofi/powermenu/type-3/powermenu.sh
-bind = $mainMod SHIFT, S, exec, XDG_CURRENT_DESKTOP=Sway flameshot gui --raw | wl-copy
+bind = $mainMod SHIFT, S, exec, XDG_CURRENT_DESKTOP=Sway flameshot gui
 bind = CTRL, E, exec, nautilus
 bind = $mainMod SHIFT, Space, togglefloating,
 bind = $mainMod, D, exec, $HOME/.config/rofi/launchers/type-1/launcher.sh
