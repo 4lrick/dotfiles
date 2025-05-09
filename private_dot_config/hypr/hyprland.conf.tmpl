@@ -178,7 +178,7 @@ device {
 }
 
 device {
-    name = apple-inc.-magic-trackpad-2
+    name = apple-inc.-magic-trackpad
     sensitivity = 0.5
 }
 
@@ -415,19 +415,15 @@ plugin {
 		# for mode = tilt
 		tilt {
 
-			# controls how powerful the tilt is, the lower, the more power
-			# this value controls at which speed (px/s) the full tilt is reached
-			limit = 5000
+        # controls how powerful the tilt is, the lower, the more power
+        # this value controls at which speed (px/s) the full tilt is reached
+        limit = 5000
 
-			# relationship between speed and tilt, supports these values:
-			# linear             - a linear function is used
-			# quadratic          - a quadratic function is used (most realistic to actual air drag)
-			# negative_quadratic - negative version of the quadratic one, feels more aggressive
-			function = negative_quadratic
-			# linear             - a linear function is used
-			# quadratic          - a quadratic function is used
-			# negative_quadratic - negative version of the quadratic one, feels more aggressive
-			function = quadratic
+        # relationship between speed and tilt, supports these values:
+        # linear             - a linear function is used
+        # quadratic          - a quadratic function is used (most realistic to actual air drag)
+        # negative_quadratic - negative version of the quadratic one, feels more aggressive
+        function = negative_quadratic
 		}
 
 		# configure shake to find
