@@ -31,6 +31,7 @@ exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 44.837927 -L -0.579294
 exec-once = waybar & dex --autostart --environment hyprland
 exec-once = hyprlock
+exec-once = legcord
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 exec-once = fcitx5 -r
 exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
@@ -129,6 +130,7 @@ animations {
 
     # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
+
     bezier = myBezier, 0.05, 0.9, 0.1, 1.05
 
     animation = windows, 1, 7, myBezier
@@ -153,6 +155,7 @@ master {
 gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
     workspace_swipe = false
+	workspace_swipe_fingers = 4
 }
 
 misc {
@@ -219,6 +222,7 @@ windowrule = stayfocused, class:(zoom), initialTitle:(menu window)
 windowrule = move cursor, class:(zoom), title:(zoom)
 windowrule = noborder, class:(zoom), title:(cc_receiver)
 windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+windowrule = noborder, class:^(zen)$
 {{- if eq .chezmoi.hostname "B00T" }}
 windowrule = monitor DP-2,class:^(vesktop)$
 windowrule = noborder,class:^(vesktop)$
@@ -239,8 +243,6 @@ windowrule = workspace 8, class:^(brave-ejhkdoiecgkmdpomoahkdihbcldkgjci-Default
 windowrule = noborder, class:^(brave-ejhkdoiecgkmdpomoahkdihbcldkgjci-Default)$
 windowrule = tile, class:^(dev.zed.Zed)$
 windowrule = noborder, class:^(dev.zed.Zed)$
-windowrule = noborder, class:^(zen-beta)$
-windowrule = noborder, class:^(zen)$
 {{- end }}
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -356,6 +358,11 @@ binde=,J,resizeactive,0 10
 bind =, Escape, submap, reset
 submap=reset
 
+# Plugin section
+
+bind = $mainMod, SUPER_L, overview:toggle
+bind = ,swipeup:4, overview:toggle
+
 plugin {
     hyprexpo {
         columns = 3
@@ -367,6 +374,9 @@ plugin {
         gesture_distance = 100 # how far is the "max"
         gesture_positive = true # positive = swipe down. Negative = swipe up.
     }
+	overview {
+		switchOnDrop = true
+	}
     dynamic-cursors {
 		# enables the plugin
 		enabled = true
@@ -414,15 +424,6 @@ plugin {
 			# negative_quadratic - negative version of the quadratic one, feels more aggressive
 			function = negative_quadratic
 		}
-
-		# for mode = stretch
-		stretch {
-
-			# controls how much the cursor is stretched
-			# this value controls at which speed (px/s) the full stretch is reached
-			limit = 3000
-
-			# relationship between speed and stretch amount, supports these values:
 			# linear             - a linear function is used
 			# quadratic          - a quadratic function is used
 			# negative_quadratic - negative version of the quadratic one, feels more aggressive
