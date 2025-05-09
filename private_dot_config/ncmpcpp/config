@@ -1,36 +1,40 @@
 ##### connection settings #####
 mpd_host = "127.0.0.1"
-mpd_port = 6600
+mpd_port = "6600"
 mpd_connection_timeout = "5"
 mpd_crossfade_time = "5"
-mpd_music_dir = ~/Music
+mpd_music_dir = "~/Music"
 
 ##### music visualizer #####
-visualizer_output_name = Visualizer feed
-visualizer_in_stereo = yes
-visualizer_type = wave_filled
-visualizer_fps = 60
-visualizer_autoscale = yes
-visualizer_look = ●▮
-visualizer_color = red
-visualizer_spectrum_smooth_look = yes
+visualizer_output_name = "Visualizer feed"
+visualizer_in_stereo = "yes"
+visualizer_type = "wave_filled"
+visualizer_fps = "60"
+visualizer_autoscale = "yes"
+visualizer_look = "●▮"
+visualizer_color = "red"
+visualizer_spectrum_smooth_look = "yes"
 
 ##### song format #####
 alternative_header_second_line_format = "{%A - }{ [%y]}"
 song_columns_list_format = "(10)[white]{l} (30)[white]{t} (40)[white]{a} (30)[white]{b}"
 
+##### columns settings #####
+
 ##### various settings #####
-execute_on_song_change = dunstify --replace=27072 "$(mpc --format "%title%\n%artist%" current)"
+execute_on_song_change = "~/.config/ncmpcpp/musnotify"
+browser_display_mode = "columns"
 
 ##### interface settings #####
-mouse_support = yes
-startup_screen = playlist
-user_interface = alternative
-main_window_color = red
-progressbar_look = "▓▓▓"
-progressbar_color = white
-progressbar_elapsed_color = red
+mouse_support = "yes"
+startup_screen = "browser"
+user_interface = "alternative"
+main_window_color = "red"
+# progressbar_look = "▓▓▓"
+progressbar_look = "──"
+progressbar_color = "white"
+progressbar_elapsed_color = "red"
 
 ##### current item styling #####
-current_item_prefix = $(white)$r
-current_item_suffix = $/r$(end)
+current_item_prefix = "$(white)$r"
+current_item_suffix = "$/r$(end)"
