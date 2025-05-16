@@ -1,8 +1,8 @@
 # See https://wiki.hyprland.org/Configuring/Monitors/
 {{- if eq .chezmoi.hostname "B00T" }}
-monitor=DP-2, 1920x1080@60, 0x0, 1, bitdepth, 10
-monitor=DP-3, 1920x1080@144, 1920x0, 1, bitdepth, 10
-monitor=DP-1, 1920x1080@60, 3840x0, 1, bitdepth, 10
+monitor=DP-2, 1920x1080@60, 0x0, 1
+monitor=DP-3, 1920x1080@144, 1920x0, 1
+monitor=DP-1, 1920x1080@60, 3840x0, 1
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 # Mirror
 # monitor=eDP-1,preferred,auto,1,mirror
@@ -227,6 +227,10 @@ windowrule = noborder, class:^(zen)$
 {{- if eq .chezmoi.hostname "B00T" }}
 windowrule = monitor DP-2,class:^(vesktop)$
 windowrule = noborder,class:^(vesktop)$
+windowrule = monitor DP-2,class:^(WebCord)$
+windowrule = noborder, class:^(WebCord)$
+windowrule = monitor DP-2,class:^(discord)$
+windowrule = noborder, class:^(discord)$
 windowrule = monitor DP-2,class:^(legcord)$
 windowrule = noborder, class:^(legcord)$
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
