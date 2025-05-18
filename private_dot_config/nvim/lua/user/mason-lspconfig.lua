@@ -1,8 +1,9 @@
 return {
 	"williamboman/mason-lspconfig.nvim",
+	-- version = "1.32.0",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"williamboman/mason.nvim",
+		{ "williamboman/mason.nvim" },
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
@@ -18,12 +19,13 @@ return {
 				"lua_ls",
 				"marksman",
 				"pyright",
+				"rust_analyzer",
 				"tailwindcss",
 				"ts_ls",
 				"volar",
 				"yamlls",
 			},
-			automatic_installation = true,
+			automatic_enable = true,
 		})
 
 		require("mason-tool-installer").setup({

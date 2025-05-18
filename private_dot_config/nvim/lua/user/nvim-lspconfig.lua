@@ -18,7 +18,9 @@ return {
 		local opts = { noremap = true, silent = true }
 		local keymap = vim.keymap.set
 
-		keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+		keymap("n", "K", function()
+			vim.lsp.buf.hover({ border = "rounded" })
+		end, opts)
 		keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 		keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 		keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
@@ -27,28 +29,26 @@ return {
 		keymap("n", "<leader>lI", "<cmd>Mason<CR>", opts)
 		keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
 		keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
-		keymap("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+		keymap("n", "<leader>ls", function()
+			vim.lsp.buf.signature_help({ border = "rounded" })
+		end, opts)
 		keymap("n", "<leader>ll", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 		keymap({ "n", "v" }, "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 		keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
 		local lspconfig = require("lspconfig")
-		local mason_lspconfig = require("mason-lspconfig")
+		local mason_lspconfig = require("mason-lspconfig").get_installed_servers()
 
-		mason_lspconfig.setup_handlers({
-			function(server_name)
-				local server_opts = {
-					capabilities = capabilities,
-				}
-
-				local ok, custom_opts = pcall(require, "ls_settings." .. server_name)
-				if ok then
-					server_opts = vim.tbl_deep_extend("force", custom_opts, server_opts)
-				end
-
-				lspconfig[server_name].setup(server_opts)
-			end,
-		})
+		for _, server in ipairs(mason_lspconfig) do
+			local server_opts = {
+				capabilities = capabilities,
+			}
+			local ok, custom_opts = pcall(require, "lsp." .. server)
+			if ok then
+				server_opts = vim.tbl_deep_extend("force", custom_opts, server_opts)
+			end
+			vim.lsp.config(server, server_opts)
+		end
 
 		if lspconfig.gdscript then
 			lspconfig.gdscript.setup({
@@ -68,9 +68,9 @@ return {
 		end
 
 		local config = {
-			-- disable virtual text
-			virtual_text = false,
-			-- show signs
+			virtual_lines = {
+				current_line = true,
+			},
 			signs = {
 				active = signs,
 			},
@@ -89,13 +89,5 @@ return {
 		}
 
 		vim.diagnostic.config(config)
-
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-			border = "rounded",
-		})
-
-		vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-			border = "rounded",
-		})
 	end,
 }
