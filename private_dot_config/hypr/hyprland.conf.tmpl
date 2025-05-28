@@ -367,10 +367,6 @@ bind =, Escape, submap, reset
 submap=reset
 
 # Plugin section
-
-bind = $mainMod, SUPER_L, overview:toggle
-bind = ,swipeup:4, overview:toggle
-
 plugin {
     hyprexpo {
         columns = 3
@@ -382,10 +378,6 @@ plugin {
         gesture_distance = 100 # how far is the "max"
         gesture_positive = true # positive = swipe down. Negative = swipe up.
     }
-	overview {
-		enabled = false
-		switchOnDrop = true
-	}
     dynamic-cursors {
 		# enables the plugin
 		enabled = true
