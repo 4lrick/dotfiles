@@ -1,0 +1,21 @@
+lastupdatecheck: 0
+recentrepos:
+    - /home/suntyx/Documents/Etudes/Epitech/Git/SunChaser
+    - /home/suntyx/Downloads/SunChaser
+    - /home/suntyx/Documents/GitRepo/simple-package-tracker
+    - /home/suntyx/Documents/GitRepo/simple-reminder
+    - /home/suntyx/.local/share/chezmoi
+    - /home/suntyx/Documents/GitRepo/zmk-config
+    - /home/suntyx/Documents/GitRepo/qmk_firmware
+    - /home/suntyx/Documents/Etudes/Epitech/Git/TestCar3D
+startuppopupversion: 5
+lastversion: 0.51.1
+customcommandshistory: []
+hidecommandlog: false
+ignorewhitespaceindiffview: false
+diffcontextsize: 3
+renamesimilaritythreshold: 50
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always
