@@ -227,6 +227,8 @@ windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned
 windowrule = noborder, class:^(zen)$
 windowrule = noborder, class:^(zenity)$
 windowrule = noborder, class:^(org.gnome.Calculator)$
+windowrule = noborder, class:^(org.gnome.Loupe)$
+windowrule = float, class:^(org.gnome.Loupe)$
 {{- if eq .chezmoi.hostname "B00T" }}
 windowrule = monitor DP-2,class:^(vesktop)$
 windowrule = noborder,class:^(vesktop)$
