@@ -122,6 +122,9 @@ bindkey "^[[1;5D" backward-word
 # Make ctrl+delete delete words
 bindkey '^[[3;5~' kill-word
 
+# Make ctrl+backspace delete words backwards
+bindkey '^H' backward-kill-word
+
 # Make ctrl+up/down search based on prefix
 for direction (up down) {
   autoload $direction-line-or-beginning-search
