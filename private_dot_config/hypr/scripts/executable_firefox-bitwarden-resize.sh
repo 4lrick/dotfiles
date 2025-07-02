@@ -27,6 +27,16 @@ handle() {
 			dispatch resizewindowpixel exact 25% 55%, \
 			address:0x$window_id; \
 			dispatch centerwindow"
+
+			# Move cursor to center of the active window
+			hyprctl dispatch movecursor $(hyprctl activewindow -j | jq -r '[.at[0] + (.size[0] / 2 | floor), .at[1] + (.size[1] / 2 | floor)] | join(" ")')
+
+			# Press Tab 4 times
+			hyprctl dispatch sendshortcut ",TAB,"
+			hyprctl dispatch sendshortcut ",TAB,"
+			hyprctl dispatch sendshortcut ",TAB,"
+			hyprctl dispatch sendshortcut ",TAB,"
+
 		fi
 		;;
 	esac
