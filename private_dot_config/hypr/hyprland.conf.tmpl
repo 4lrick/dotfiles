@@ -26,6 +26,7 @@ exec-once = hyprpm reload -n
 exec-once = $HOME/.config/hypr/scripts/firefox-bitwarden-resize.sh
 exec-once = hyprpaper
 exec-once = clipse -listen
+exec-once = fcitx5
 {{- if eq .chezmoi.hostname "B00T" }}
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 44.837927 -L -0.579294
@@ -33,7 +34,6 @@ exec-once = waybar & dex --autostart --environment hyprland
 exec-once = hyprlock
 exec-once = legcord
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
-exec-once = fcitx5 -r
 exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 46.813118 -L -71.207469
 exec-once = waybar & dex-autostart --autostart --environment hyprland
@@ -197,6 +197,9 @@ windowrule = float,class:^(org.gnome.NautilusPreviewer)$
 windowrule = float,class:^(org.gnome.Nautilus)$
 windowrule = size 1218 729, class:^(org.gnome.Nautilus)$
 windowrule = noborder,class:^(org.gnome.Nautilus)$
+windowrule = noborder, class:^(Xdg-desktop-portal-gtk)$
+windowrule = noborder, class:^(xdg-desktop-portal-gtk)$
+windowrule = float, class:^(xdg-desktop-portal-gtk)$
 windowrule = noborder,class:^(simple-package-tracker)$
 windowrule = float,class:^(SAMURAI)$
 windowrule = float,class:^(SunChaser)$
