@@ -22,7 +22,7 @@ return {
 				"rust_analyzer",
 				"tailwindcss",
 				"ts_ls",
-				"volar",
+				"vue_ls",
 				"yamlls",
 			},
 			automatic_enable = true,
