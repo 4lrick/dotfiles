@@ -17,7 +17,7 @@ visualizer_spectrum_smooth_look = "yes"
 
 ##### song format #####
 alternative_header_second_line_format = "{%A - }{ [%y]}"
-song_columns_list_format = "(10)[white]{l} (30)[white]{t} (40)[white]{a} (30)[white]{b}"
+song_columns_list_format = "(10)[white]{l} (30)[white]{t|f} (40)[white]{a} (30)[white]{b}"
 
 ##### columns settings #####
 
