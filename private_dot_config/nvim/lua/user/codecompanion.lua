@@ -12,16 +12,17 @@ return {
 	},
 	opts = {
 		adapters = {
-			copilot = function()
-				return require("codecompanion.adapters").extend("copilot", {
-					schema = {
-						model = {
-							-- default = "claude-3.7-sonnet-thought",
-							default = "claude-3.5-sonnet",
+			http = {
+				copilot = function()
+					return require("codecompanion.adapters").extend("copilot", {
+						schema = {
+							model = {
+								default = "claude-sonnet-4",
+							},
 						},
-					},
-				})
-			end,
+					})
+				end,
+			},
 		},
 		strategies = {
 			chat = { adapter = "copilot" },

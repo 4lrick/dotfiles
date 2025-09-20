@@ -36,7 +36,6 @@ return {
 		keymap({ "n", "v" }, "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 		keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
-		local lspconfig = require("lspconfig")
 		local mason_lspconfig = require("mason-lspconfig").get_installed_servers()
 
 		for _, server in ipairs(mason_lspconfig) do
@@ -50,11 +49,7 @@ return {
 			vim.lsp.config(server, server_opts)
 		end
 
-		if lspconfig.gdscript then
-			lspconfig.gdscript.setup({
-				capabilities = capabilities,
-			})
-		end
+		vim.lsp.enable('gdscript')
 
 		local signs = {
 			{ name = "DiagnosticSignError", text = "" },
