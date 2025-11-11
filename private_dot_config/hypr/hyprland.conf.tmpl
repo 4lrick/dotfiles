@@ -1,8 +1,8 @@
 # See https://wiki.hyprland.org/Configuring/Monitors/
 {{- if eq .chezmoi.hostname "B00T" }}
-monitor=DP-2, 1920x1080@60, 0x0, 1
-monitor=DP-3, 1920x1080@144, 1920x0, 1
-monitor=DP-1, 1920x1080@60, 3840x0, 1
+monitor=DP-2, 1920x1080@60, 0x0, 1, bitdepth, 10
+monitor=DP-3, 1920x1080@144, 1920x0, 1, bitdepth, 10
+monitor=DP-1, 1920x1080@60, 3840x0, 1, bitdepth, 10
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 # Mirror
 # monitor=eDP-1,preferred,auto,1,mirror
@@ -25,17 +25,18 @@ workspace=3, monitor:DP-1,
 exec-once = hyprpm reload -n
 exec-once = $HOME/.config/hypr/scripts/firefox-bitwarden-resize.sh
 exec-once = hyprpaper
-exec-once = clipse -listen
+exec-once = vicinae server
+# exec-once = clipse -listen
 exec-once = fcitx5
 {{- if eq .chezmoi.hostname "B00T" }}
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec-once = wlsunset -l 44.841619 -L -0.581088
+exec-once = wlsunset -l 44.837927 -L -0.579294
 exec-once = waybar & dex --autostart --environment hyprland
 exec-once = hyprlock
 exec-once = legcord
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
-exec-once = wlsunset -l 46.813118 -L -71.207469
+exec-once = wlsunset -l 44.837927 -L -0.579294
 exec-once = waybar & dex-autostart --autostart --environment hyprland
 exec-once = hypridle
 exec-once = thunderbird
@@ -175,8 +176,9 @@ master {
 
 gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    workspace_swipe = false
-	workspace_swipe_fingers = 4
+	gesture = 4, down, dispatcher, hyprexpo:expo, toggle
+	gesture = 4, up, dispatcher, hyprexpo:expo, toggle
+	gesture = 4, horizontal, workspace
 }
 
 misc {
@@ -224,7 +226,7 @@ windowrule = float, class:^(xdg-desktop-portal-gtk)$
 windowrule = noborder,class:^(simple-package-tracker)$
 windowrule = float,class:^(SAMURAI)$
 windowrule = float,class:^(SunChaser)$
-windowrule = move onscreen 25% 25% class:^(SunChaser)$
+windowrule = move onscreen 25% 25%, class:^(SunChaser)$
 windowrule = size 960 587, class:^(SunChaser)$
 windowrule = suppressevent fullscreen, class:^(SunChaser)$
 windowrule = float, initialTitle:^(Picture-in-Picture)$
@@ -234,7 +236,7 @@ windowrule = move onscreen 100% 2.45%, initialTitle:^(Picture-in-Picture)$
 windowrule = noinitialfocus,title:(Picture-in-Picture),
 windowrule = noborder, class:^(vivaldi-stable)$
 windowrule = float, class:^(vivaldi-stable), initialTitle:^(Bitwarden - Vivaldi)$
-windowrule = move onscreen 37% 17% class:^(vivaldi-stable), initialTitle:^(Bitwarden - Vivaldi)$
+windowrule = move onscreen 37% 17%, class:^(vivaldi-stable), initialTitle:^(Bitwarden - Vivaldi)$
 windowrule = size 500 770, class:^(vivaldi-stable), initialTitle:^(Bitwarden - Vivaldi)$
 windowrule = noborder, class:^(ONLYOFFICE Desktop Editors)$
 windowrule = float, class:^(clipse)$
@@ -295,8 +297,10 @@ bind = CTRL SHIFT, E, exec, $HOME/.config/rofi/powermenu/type-3/powermenu.sh
 bind = $mainMod SHIFT, S, exec, flameshot gui & sleep 0.5 && hyprctl dispatch movecursor 2880 540
 bind = CTRL, E, exec, nautilus
 bind = $mainMod SHIFT, Space, togglefloating,
-bind = $mainMod, D, exec, $HOME/.config/rofi/launchers/type-1/launcher.sh
-bind = $mainMod, V, exec, kitty --class clipse -e clipse
+# bind = $mainMod, D, exec, $HOME/.config/rofi/launchers/type-1/launcher.sh
+bind = $mainMod, D, exec, vicinae toggle
+# bind = $mainMod, V, exec, kitty --class clipse -e clipse
+bind = $mainMod, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history
 # bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, S, togglesplit, # dwindle
 bind = $mainMod, F, fullscreen,
