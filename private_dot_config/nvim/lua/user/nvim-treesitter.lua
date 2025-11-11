@@ -14,6 +14,7 @@ return {
 				"dockerfile",
 				"gdscript",
 				"html",
+				"hyprlang",
 				"javascript",
 				"json",
 				"lua",

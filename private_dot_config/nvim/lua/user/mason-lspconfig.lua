@@ -15,6 +15,7 @@ return {
 				"cssls",
 				"emmet_language_server",
 				"html",
+				"hyprls",
 				"jsonls",
 				"lua_ls",
 				"marksman",
