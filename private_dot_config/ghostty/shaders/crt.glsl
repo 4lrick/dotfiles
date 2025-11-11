@@ -26,11 +26,12 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
         
         // sample the texture and apply a teal tint
         vec3 color = texture(iChannel0, uv).rgb;
-        // vec3 tealTint = vec3(0.0, 0.8, 0.6); // teal color (slightly more green than blue)
+        vec3 tealTint = vec3(0.0, 0.8, 0.6); // teal color (slightly more green than blue)
         vec3 noTint = vec3(1.0); // no tint
 
         // mix the sampled color with the teal tint based on scanline intensity
-        // fragColor = vec4(mix(color * noTint, vec3(0.0), apply), 1.0);
-        fragColor = vec4(mix(color * noTint, vec3(0.0), vec3(0.0)), 1.0); // no scanline effect
+        // fragColor = vec4(mix(color * tealTint, vec3(0.0), apply), 1.0);
+        fragColor = vec4(mix(color * noTint, vec3(0.0), apply), 1.0);
+        // fragColor = vec4(mix(color * noTint, vec3(0.0), vec3(0.0)), 1.0); // no scanline effect
     }
 }
