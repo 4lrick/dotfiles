@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.hostname "B00T" -}}
 #!/usr/bin/env bash
 
 notification_id=9998
@@ -5,27 +6,148 @@ duration=5
 interval=0.5
 
 if ! command -v sensors &>/dev/null; then
-    notify-send -r "$notification_id" "Temperature Monitor" "'sensors' is not installed."
-    exit 1
-fi
-
-if ! command -v nvidia-smi &>/dev/null; then
-    notify-send -r "$notification_id" "Temperature Monitor" "'nvidia-smi' is not installed."
-    exit 1
+  notify-send -r "$notification_id" "Temperature Monitor" "'sensors' is not installed."
+  exit 1
 fi
 
 get_cpu_temp() {
-    sensors 2>/dev/null | awk '/Tctl:/ { gsub(/\+|°C/, "", $2); printf "%d°C\n", $2; exit }'
+  sensors 2>/dev/null | awk '/^Tctl:/ { gsub(/\+|°C/,"",$2); printf "%d°C\n",$2+0; exit }'
 }
 
 get_gpu_temp() {
-    nvidia-smi --query-gpu=temperature.gpu --format=noheader 2>/dev/null | awk '{printf "%d°C\n", $1}'
+  if command -v nvidia-smi &>/dev/null; then
+    nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | head -n1 | awk '{printf "%d°C\n", $1+0}'
+  fi
+}
+
+get_nvme_lines() {
+  sensors 2>/dev/null | awk '
+    /^[^:]+$/ { sec=$0; next }
+    sec ~ /^nvme-pci-[0-9a-f]+$/ && /Composite:/ {
+      gsub(/\+|°C/,"",$2)
+      match(sec, /nvme-pci-([0-9a-f]+)/, m)
+      id=m[1]
+      label=id
+      if (id=="0400") label="500Go"
+      else if (id=="0100") label="1000Go"
+      printf "NVMe %s: %d°C\n", label, $2+0
+    }'
+}
+
+get_pwm_fans() {
+  sensors 2>/dev/null | awk '
+    /^[^:]+$/ { section=$0; next }
+    section ~ /^corsaircpro-hid-/ && /^fan[1-9] 4pin:/ {
+      match($1, /fan([0-9]+)/, m)
+      printf "FAN%s: %s %s\n", m[1], $3, $4
+    }'
 }
 
 while [ $SECONDS -lt $duration ]; do
-    cpu="$(get_cpu_temp)"
-    gpu="$(get_gpu_temp)"
+  cpu="$(get_cpu_temp)"
+  gpu="$(get_gpu_temp)"
+  nvme="$(get_nvme_lines)"
+  pwm="$(get_pwm_fans)"
 
-    notify-send -r "$notification_id" "Current temperature" " \nCPU: $cpu\nGPU: $gpu"
-    sleep "$interval"
+  sec1="CPU: $cpu"
+  [ -n "$gpu" ] && sec1="$sec1
+GPU: $gpu"
+
+  body=" 
+$sec1"
+  [ -n "$pwm" ] && body="$body
+
+$pwm"
+  [ -n "$nvme" ] && body="$body
+
+$nvme"
+
+  notify-send -r "$notification_id" "Current temperature" "$body"
+  sleep "$interval"
 done
+
+{{- else if eq .chezmoi.hostname "XPS-9510" -}}
+#!/usr/bin/env bash
+
+notification_id=9998
+duration=5
+interval=0.5
+
+if ! command -v sensors &>/dev/null; then
+  notify-send -r "$notification_id" "Temperature Monitor" "'sensors' is not installed."
+  exit 1
+fi
+
+get_cpu_temp() {
+  sensors 2>/dev/null | awk '
+    /^[^:]+$/ { section=$0; next }
+    section ~ /^dell_ddv-virtual-/ && /^[[:space:]]*CPU:[[:space:]]*\+/ { gsub(/\+|°C/,"",$2); printf "%d°C\n", $2+0; got=1; exit }
+    section ~ /^coretemp-isa-/ && /Package id 0:/ && !got { gsub(/\+|°C/,"",$4); printf "%d°C\n", $4+0; exit }'
+}
+
+get_fans_lines() {
+  sensors 2>/dev/null | awk '
+    /^[^:]+$/ { section=$0; next }
+    section ~ /^dell_ddv-virtual-/ && /^CPU Fan:/   { printf "CPU Fan: %s %s\n", $3, $4 }
+    section ~ /^dell_ddv-virtual-/ && /^Video Fan:/ { printf "Video Fan: %s %s\n", $3, $4 }'
+}
+
+get_nvme_lines() {
+  sensors 2>/dev/null | awk '
+    /^[^:]+$/ { section=$0; next }
+    section ~ /^nvme-pci-[0-9a-f]+$/ && /Composite:/ {
+      gsub(/\+|°C/,"",$2)
+      match(section, /nvme-pci-([0-9a-f]+)/, m)
+      id=m[1]; label=id
+      if (id=="0100") label="1000Go"
+      printf "NVMe %s: %d°C\n", label, $2+0
+    }'
+}
+
+get_wifi_line() {
+  sensors 2>/dev/null | awk '
+    /^[^:]+$/ { section=$0; next }
+    section ~ /^iwlwifi_.*-virtual-.*$/ && /temp1:/ { gsub(/\+|°C/,"",$2); printf "Wi-Fi: %d°C\n", $2+0; exit }'
+}
+
+get_battery_lines() {
+  sensors 2>/dev/null | awk '
+    /^[^:]+$/ { section=$0; next }
+    section == "BAT0-acpi-0" && /^in0:/   { v=$2" "$3 }
+    section == "BAT0-acpi-0" && /^temp:/  { t=$2 }
+    section == "BAT0-acpi-0" && /^curr1:/ { c=$2" "$3 }
+    END {
+      if (v!="") printf "BAT: %s\n", v
+      if (t!="") { gsub(/\+|°C/,"",t); printf "BAT Temp: %d°C\n", t+0 }
+      if (c!="") printf "BAT Curr: %s\n", c
+    }'
+}
+
+while [ $SECONDS -lt $duration ]; do
+  cpu="$(get_cpu_temp)"
+  fans="$(get_fans_lines)"
+  nvme="$(get_nvme_lines)"
+  wifi="$(get_wifi_line)"
+  bat="$(get_battery_lines)"
+
+  sec1="CPU: $cpu"
+  [ -n "$fans" ] && sec1="$sec1
+$fans"
+
+  body=" 
+$sec1"
+  [ -n "$nvme" ] && body="$body
+
+$nvme"
+  [ -n "$wifi" ] && body="$body
+
+$wifi"
+  [ -n "$bat" ] && body="$body
+
+$bat"
+
+  notify-send -r "$notification_id" "Current temperature" "$body"
+  sleep "$interval"
+done
+{{- end -}}
+
