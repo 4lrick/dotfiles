@@ -7,8 +7,8 @@ export WORDCHARS='' # Allow for word jumps
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 {{- if eq .chezmoi.hostname "XPS-9510" }}
 export ANDROID_HOME=$HOME/Android/Sdk
-export BUN_INSTALL="$HOME/.bun"
 {{- end }}
+export BUN_INSTALL="$HOME/.bun"
 export DENO_INSTALL="$HOME/.deno"
 export MANPAGER="nvim +Man!"
 export PNPM_HOME=$HOME/.local/share/pnpm
@@ -32,7 +32,9 @@ if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.z
 
 # SOURCE
 source $HOME/.deno/env
+{{- if eq .chezmoi.hostname "XPS-9510" }}
 [ -s "/home/alrick/.bun/_bun" ] && source "/home/alrick/.bun/_bun"
+{{- end }}
 
 # ZINIT INIT
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
