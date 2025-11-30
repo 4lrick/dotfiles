@@ -94,7 +94,7 @@
 	{{- end }}
 	"clock#clock2": {"tooltip-format": "<tt><small>{calendar}</small></tt>",
         "format": "󰃭  {:%d/%m/%Y}",
-        "on-click": "notify-send 'Calendar' \"\\n$(cal -m)\"",
+        "on-click": "notify-send 'Calendar' \"\\n$(cal -m -3 -c 2)\"",
         "tooltip-format": "{calendar}",
         "calendar": {
         	"format": {
