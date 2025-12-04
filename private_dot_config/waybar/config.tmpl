@@ -75,7 +75,11 @@
         "format": "󰕾  {volume}%",
         "format-muted": "󰖁  {volume}%",
         "on-click": "amixer set Master toggle",
+    {{- if eq .chezmoi.hostname "B00T" }}
         "on-click-right": "pwvucontrol",
+    {{- else if eq .chezmoi.hostname "XPS-9510" }}
+        "on-click-right": "flatpak run com.saivert.pwvucontrol",
+    {{- end }}
     }, 
     {{- if eq .chezmoi.hostname "XPS-9510" }}
 	"custom/keyboard": {
