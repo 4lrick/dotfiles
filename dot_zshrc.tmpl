@@ -19,12 +19,12 @@ export PATH=/var/lib/flatpak/exports/bin:$PATH
 export PATH=~/.local/share/flatpak/exports/bin:$PATH
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH=$HOME/.opencode/bin:$PATH
 {{- end }}
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/Documents/AppImage/:$PATH
+export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH=~/.npm-global/bin:$PATH
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="$PNPM_HOME:$PATH"
@@ -62,7 +62,7 @@ zinit ice wait"0" lucid atload'unalias zi'
 zinit light ajeetdsouza/zoxide
 
 zinit ice wait"2" lucid
-zinit light loiccoyle/zsh-github-copilot
+zinit light 4lrick/zsh-github-copilot
 
 zinit ice wait"1" lucid
 zinit snippet OMZP::sudo
