@@ -98,7 +98,7 @@
 	{{- end }}
 	"clock#clock2": {"tooltip-format": "<tt><small>{calendar}</small></tt>",
         "format": "󰃭  {:%d/%m/%Y}",
-        "on-click": "notify-send 'Calendar' \"\\n$(cal -m -3 -c 2)\"",
+		"on-click": "notify-send 'Calendar' \"$(cal -c 2 -3 -m | awk -v day=$(date +%-d) 'NR>=3 && NR<=7 {left=substr($0,1,21); right=substr($0,22); gsub(\" \"day\" \", \" <span color=\\\"#CC2E2E\\\"><b><u>\"day\"</u></b></span> \", right); gsub(\" \"day\"$\", \" <span color=\\\"#CC2E2E\\\"><b><u>\"day\"</u></b></span>\", right); print left right; next} {print}')\"",
         "tooltip-format": "{calendar}",
         "calendar": {
         	"format": {
