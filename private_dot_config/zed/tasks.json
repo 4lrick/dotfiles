@@ -42,7 +42,7 @@
 	},
 	{
 		"label": "Run Godot Project",
-		"command": "~/Downloads/Godot_v4.2-stable_linux.x86_64 --path $ZED_WORKTREE_ROOT",
+		"command": "godot --path $ZED_WORKTREE_ROOT",
 		"env": {},
 		"cwd": "$ZED_WORKTREE_ROOT",
 		"use_new_terminal": false,
