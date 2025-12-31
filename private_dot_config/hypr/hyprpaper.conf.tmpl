@@ -1,9 +1,11 @@
-{{- if eq .chezmoi.hostname "XPS-9510" -}}
-preload=$HOME/Pictures/enso_wallpaper.jpg
-wallpaper=,$HOME/Pictures/enso_wallpaper.jpg
-{{- else if eq .chezmoi.hostname "B00T" -}}
-preload=$HOME/Pictures/Archlinux wallpaper ASCII/Red ASCII LOGO Small.png
-wallpaper=,$HOME/Pictures/Archlinux wallpaper ASCII/Red ASCII LOGO Small.png
-{{- end }}
+wallpaper {
+	monitor =
+	{{- if eq .chezmoi.hostname "XPS-9510" -}}
+	path = ~/Pictures/enso_wallpaper.jpg
+	{{- else if eq .chezmoi.hostname "B00T" -}}
+	path = ~/Pictures/Archlinux wallpaper ASCII/Red ASCII LOGO Small.png
+	{{- end }}
+}
+
 splash=off
 ipc=off
