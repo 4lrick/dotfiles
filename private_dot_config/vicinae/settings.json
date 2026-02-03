@@ -1,0 +1,84 @@
+// This configuration is merged with the default vicinae configuration file, which you can obtain by running the `vicinae config default` command.
+// Every item defined in this file takes precedence over the values defined in the default config or any other imported file.
+//
+// You can make manual edits to this file, however you should keep in mind that this file may be written to by vicinae when a configuration change is made through the GUI.
+// When that happens, any custom comments or formatting will be lost.
+//
+// If you want to maintain a configuration file with your own comments and formatting, you should create a separate file and add it to the 'imports' array.
+//
+// Learn more about configuration at https://docs.vicinae.com/config
+
+{
+   "$schema": "https://vicinae.com/schemas/config.json",
+   "favicon_service": "google",
+   "launcher_window": {
+      "opacity": 0.85
+   },
+   "favorites": [],
+   "providers": {
+      "@Ninetonine/store.vicinae.searxng": {
+         "preferences": {
+            "default_category": "default",
+            "details_start_open": true,
+            "instance_domain": "https://searx.suntyx.top"
+         },
+         "entrypoints": {
+            "search-with-searxng": {
+               "alias": "s"
+            }
+         }
+      },
+      "@asubbotin/store.raycast.shell": {
+         "preferences": {
+            "arguments_terminal_type": "Terminal"
+         }
+      },
+      "@leonkohli/store.vicinae.process-manager": {
+         "preferences": {
+            "refresh-interval": "1000",
+            "sort-by-memory": false
+         }
+      },
+      "applications": {
+         "preferences": {
+            "paths": [
+               "/home/suntyx/.local/share/applications",
+               "/usr/share/applications"
+            ]
+         }
+      },
+      "calculator": {
+         "preferences": {
+            "backend": "soulver-core",
+            "refreshRatesOnStartup": true
+         }
+      },
+      "clipboard": {
+         "preferences": {
+            "monitoring": true
+         }
+      },
+      "core": {
+         "entrypoints": {
+            "settings": {
+               "enabled": true
+            },
+            "sponsor": {
+               "enabled": false
+            }
+         }
+      },
+      "system": {
+         "entrypoints": {
+            "browse-apps": {
+               "enabled": false
+            },
+            "run": {
+               "preferences": {
+                  "default-action": "run"
+               }
+            }
+         }
+      }
+   }
+}
