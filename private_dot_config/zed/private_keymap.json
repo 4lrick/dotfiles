@@ -14,33 +14,33 @@
 			"ctrl-k": "workspace::ActivatePaneUp",
 			"ctrl-j": "workspace::ActivatePaneDown",
 			"q": null,
-			"ctrl-shift-v": ["vim::Paste", { "preserve_clipboard": true }]
-		}
+			"ctrl-shift-v": ["vim::Paste", { "preserve_clipboard": true }],
+		},
 	},
 	{
 		"context": "Workspace",
 		"bindings": {
-			"shift shift": "file_finder::Toggle"
-		}
+			"shift shift": "file_finder::Toggle",
+		},
 	},
 	{
 		"context": "EmptyPane",
 		"bindings": {
-			"space e": "workspace::ToggleLeftDock"
-		}
+			"space e": "workspace::ToggleLeftDock",
+		},
 	},
 	{
 		"context": "Picker || menu",
 		"bindings": {
-			"space e": "workspace::ToggleLeftDock"
-		}
+			"space e": "workspace::ToggleLeftDock",
+		},
 	},
 	{
 		"context": "Editor",
 		"bindings": {
 			"ctrl-shift-i": "pane::SplitRight",
-			"ctrl-shift-o": "pane::SplitDown"
-		}
+			"ctrl-shift-o": "pane::SplitDown",
+		},
 	},
 	{
 		"context": "vim_mode == normal",
@@ -51,30 +51,30 @@
 			"space b n": "pane::ActivateNextItem",
 			"space g g": [
 				"task::Spawn",
-				{ "task_name": "lazygit", "reveal_target": "center" }
+				{ "task_name": "lazygit", "reveal_target": "center" },
 			],
 			"space f t": "pane::DeploySearch",
 			"n": "search::SelectNextMatch",
-			"shift-n": "search::SelectPreviousMatch"
-		}
+			"shift-n": "search::SelectPreviousMatch",
+		},
 	},
 	{
 		"context": "vim_mode == insert",
 		"bindings": {
-			"j k": ["workspace::SendKeystrokes", "escape"]
-		}
+			"j k": ["workspace::SendKeystrokes", "escape"],
+		},
 	},
 	{
 		"context": "vim_mode == visual",
 		"bindings": {
 			"shift-s": "vim::PushAddSurrounds",
-			"p": ["workspace::SendKeystrokes", "shift-p"]
-		}
+			"p": ["workspace::SendKeystrokes", "shift-p"],
+		},
 	},
 	{
 		"context": "Terminal",
 		"bindings": {
-			"ctrl-shift-t": "workspace::NewTerminal"
-		}
-	}
+			"ctrl-shift-t": "workspace::NewTerminal",
+		},
+	},
 ]
