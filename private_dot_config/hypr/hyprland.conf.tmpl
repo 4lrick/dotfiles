@@ -25,7 +25,7 @@ workspace=3, monitor:DP-1,
 exec-once = hyprpm reload -n
 exec-once = $HOME/.config/hypr/scripts/firefox-bitwarden-resize.sh
 exec-once = hyprpaper
-exec-once = vicinae server
+exec-once = sleep 10 && vicinae server
 # exec-once = clipse -listen
 exec-once = fcitx5
 {{- if eq .chezmoi.hostname "B00T" }}
@@ -33,7 +33,7 @@ exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 44.837927 -L -0.579294
 exec-once = waybar & dex --autostart --environment hyprland
 exec-once = hyprlock
-exec-once = legcord
+exec-once = sleep 10 && vesktop
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
 exec-once = wlsunset -l 44.837927 -L -0.579294
@@ -238,8 +238,9 @@ windowrule = float on, border_size 0, match:class ^(org.gnome.Calculator)$
 windowrule = float on, border_size 0, match:class ^(org.gnome.Loupe)$
 {{- if eq .chezmoi.hostname "B00T" }}
 windowrule = monitor DP-2, border_size 0, match:class ^(vesktop|WebCord|discord|legcord)$
-windowrule = fullscreen on, match:class ^(steam_app_284160)$
+windowrule = tile on, fullscreen on, match:class ^(steam_app_284160)$
 windowrule = opacity 0.0, no_blur on, fullscreen_state 0, match:class ^(steam_app_284160)$, match:initial_title ^$
+windowrule = tile on, match:class ^(steam)$
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
 windowrule = workspace 5 silent, border_size 0, match:class ^(com.github.IsmaelMartinez.teams_for_linux)$
 windowrule = workspace 6 silent, border_size 0, match:class ^(net.thunderbird.Thunderbird)$
@@ -248,7 +249,7 @@ windowrule = workspace 8, border_size 0, match:class ^(brave-ejhkdoiecgkmdpomoah
 windowrule = tile on, border_size 0, match:class ^(dev.zed.Zed)$
 {{- end }}
 
-layerrule = blur on, ignore_alpha 0, no_anim on, match:namespace vicinae
+layerrule = blur on, ignore_alpha 0, no_anim off, match:namespace vicinae
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 $mainMod = SUPER
