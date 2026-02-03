@@ -31,6 +31,10 @@ keymap("n", "<leader>H", ":nohlsearch<CR>", opts)
 -- Remove macro
 keymap("n", "q", "<nop>", opts)
 
+-- Move through wrapped lines
+keymap('n', 'j', function() return vim.v.count > 0 and 'j' or 'gj' end, { expr = true, silent = true })
+keymap('n', 'k', function() return vim.v.count > 0 and 'k' or 'gk' end, { expr = true, silent = true })
+
 -- Insert --
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
