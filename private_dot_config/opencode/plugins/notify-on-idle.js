@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import os from "node:os";
 
 const getParentPid = async (pid) => {
   try {
@@ -12,8 +13,10 @@ const getParentPid = async (pid) => {
   }
 };
 
+const HOME_DIR = process.env.HOME ?? os.homedir();
+
 const SOUND_PATHS = [
-  "$HOME/.config/opencode/sounds/complete.wav",
+  `${HOME_DIR}/.config/opencode/sounds/complete.wav`,
   "/usr/share/sounds/freedesktop/stereo/complete.oga",
   "/usr/share/sounds/freedesktop/stereo/bell.wav",
 ];
