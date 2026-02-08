@@ -7,20 +7,20 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
-	"features": {
-		"edit_prediction_provider": "copilot"
+	"edit_predictions": {
+		"provider": "copilot",
 	},
 	"agent": {
 		"default_model": {
 			"provider": "copilot_chat",
-			"model": "gpt-5-mini"
-		}
+			"model": "gpt-5-mini",
+		},
 	},
 	"telemetry": {
 		"diagnostics": false,
-		"metrics": false
+		"metrics": false,
 	},
-	"restore_on_startup": "none",
+	"restore_on_startup": "empty_tab",
 	"vim_mode": true,
 	"ui_font_size": 21,
 	"buffer_font_size": 21,
@@ -33,40 +33,40 @@
 	"tab_size": 2,
 	"tabs": {
 		"file_icons": true,
-		"git_status": true
+		"git_status": true,
 	},
 	"indent_guides": {
 		"enabled": true,
 		"line_width": 1,
 		"active_line_width": 2,
 		"coloring": "fixed",
-		"background_coloring": "disabled"
+		"background_coloring": "disabled",
 	},
 	"theme": {
 		"mode": "dark",
 		"light": "Tokyo Night Light",
-		"dark": "Tokyo Night"
+		"dark": "Tokyo Night",
 	},
 	"languages": {
 		"HTML": {
 			"formatter": {
 				"external": {
 					"command": "prettier",
-					"arguments": ["--stdin-filepath", "{buffer_path}"]
-				}
-			}
+					"arguments": ["--stdin-filepath", "{buffer_path}"],
+				},
+			},
 		},
 		"GDScript": {
 			"hard_tabs": false,
 			"formatter": {
 				"external": {
 					"command": "gdformat",
-					"arguments": ["{buffer_path}", "> /dev/null 2>&1"]
-				}
-			}
+					"arguments": ["{buffer_path}", "> /dev/null 2>&1"],
+				},
+			},
 		},
 		"Markdown": {
-			"soft_wrap": "none"
-		}
-	}
+			"soft_wrap": "none",
+		},
+	},
 }
