@@ -3,8 +3,7 @@ if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && command -v tmux >/dev/null 2>&1; then
   exec tmux new-session -A -s main
 fi
 
-
-{{- if eq .chezmoi.hostname "B00T" }}fastfetch{{- end }}
+{{ if eq .chezmoi.hostname "B00T" }}fastfetch{{- end }}
 
 # ENV
 export ZSH="$HOME/.oh-my-zsh"
