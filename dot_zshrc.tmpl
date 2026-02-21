@@ -1,8 +1,4 @@
-# AUTO START TMUX
-if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && command -v tmux >/dev/null 2>&1; then
-  exec tmux new-session -A -s main
-fi
-
+if [ -z $TMUX ]; then tmux new -A -s main; fi
 {{ if eq .chezmoi.hostname "B00T" }}fastfetch{{- end }}
 
 # ENV
@@ -141,6 +137,22 @@ for direction (up down) {
   for key ($key ${key/O/[})
     bindkey $key $direction-line-or-beginning-search
 }
+
+# SWITCH CURSOR DEPENDING ON TERMINAL VIM MODE
+BLOCK='\e[1 q'
+BEAM='\e[5 q'
+
+function zle-line-init zle-keymap-select {
+  if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
+    echo -ne $BLOCK
+  elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] ||
+       [[ $KEYMAP = '' ]] || [[ $1 = 'beam' ]]; then
+    echo -ne $BEAM
+  fi
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 # EVAL 
 eval "$(fzf --zsh)"
