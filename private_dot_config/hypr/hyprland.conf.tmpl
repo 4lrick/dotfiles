@@ -185,6 +185,8 @@ gestures {
 misc {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
     force_default_wallpaper = 0 # Set to 0 to disable the anime mascot wallpapers
+	disable_hyprland_logo = true
+	disable_splash_rendering = true
 }
 
 binds {
@@ -206,6 +208,12 @@ device {
     sensitivity = 0.5
 }
 
+device {
+	name = compx-2.4g-receiver-mouse
+	sensitivity = -1.0
+    accel_profile = adaptive
+}
+
 # Example windowrule v1
 # windowrule = float, ^(kitty)$
 # Example windowrule v2
@@ -221,7 +229,7 @@ windowrule = float on, border_size 0, match:class ^(X|x)dg-desktop-portal-gtk$
 windowrule = border_size 0, match:class ^(simple-package-tracker)$
 windowrule = float on, match:class ^(SAMURAI)$
 windowrule = float on, center on, size 960 587, suppress_event fullscreen, match:class ^(SunChaser)$
-windowrule = float on, pin on, size 625 352, move (monitor_w-window_w) 25, no_initial_focus on, match:initial_title ^(Picture-in-Picture)$ 
+windowrule = float on, pin on, size 625 352, move (monitor_w-625) 25, no_initial_focus on, match:initial_title ^(Picture-in-Picture)$ 
 windowrule = border_size 0, match:class ^(vivaldi-stable)$
 windowrule = float on, center on, size 500 770, match:class ^(vivaldi-stable), match:initial_title ^(Bitwarden - Vivaldi)$
 windowrule = border_size 0, match:class ^ONLYOFFICE
@@ -238,7 +246,7 @@ windowrule = float on, border_size 0, match:class ^(org.gnome.Calculator)$
 windowrule = float on, border_size 0, match:class ^(org.gnome.Loupe)$
 {{- if eq .chezmoi.hostname "B00T" }}
 windowrule = monitor DP-2, border_size 0, match:class ^(vesktop|WebCord|discord|legcord)$
-windowrule = tile on, fullscreen on, match:class ^(steam_app_284160)$
+windowrule = fullscreen on, match:class ^(steam_app_284160)$
 windowrule = opacity 0.0, no_blur on, fullscreen_state 0, match:class ^(steam_app_284160)$, match:initial_title ^$
 windowrule = tile on, match:class ^(steam)$
 {{- else if eq .chezmoi.hostname "XPS-9510" }}
@@ -349,6 +357,9 @@ bind = ,XF86MonBrightnessDown, exec, light -U 5 && notify-send -r 9999 "Brightne
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
+bind = $mainMod, mouse_down, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float + 0.3) | if . > 8 then 8 else . end')
+bind = $mainMod, mouse_up, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float - 0.3) | if . < 1 then 1 else . end')
+
 bind = $mainMod, mouse_down, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.5}')
 bind = $mainMod, mouse_up, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 0.5}')
 bind = $mainMod, equal, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.5}')
@@ -385,8 +396,6 @@ plugin {
         workspace_method = first 1 # [center/first] [workspace] e.g. first 1 or center m+1
 
         enable_gesture = true # laptop touchpad, 4 fingers
-        gesture_distance = 100 # how far is the "max"
-        gesture_positive = true # positive = swipe down. Negative = swipe up.
     }
     dynamic-cursors {
 		# enables the plugin
