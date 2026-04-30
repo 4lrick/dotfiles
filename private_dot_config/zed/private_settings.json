@@ -48,11 +48,33 @@
 		"dark": "Tokyo Night",
 	},
 	"languages": {
+		"Python": {
+			"tab_size": 4,
+			"hard_tabs": false,
+			"language_servers": [
+				// Disable basedpyright and enable ty, and otherwise
+				// use the default configuration.
+				"ty",
+				"!basedpyright",
+				"...",
+			],
+			"code_actions_on_format": {
+				"source.organizeImports.ruff": true,
+			},
+			"formatter": {
+				"language_server": {
+					"name": "ruff",
+				},
+			},
+		},
 		"HTML": {
 			"formatter": {
 				"external": {
 					"command": "prettier",
-					"arguments": ["--stdin-filepath", "{buffer_path}"],
+					"arguments": [
+						"--stdin-filepath",
+						"{buffer_path}"
+					],
 				},
 			},
 		},
@@ -61,12 +83,15 @@
 			"formatter": {
 				"external": {
 					"command": "gdformat",
-					"arguments": ["{buffer_path}", "> /dev/null 2>&1"],
+					"arguments": [
+						"{buffer_path}",
+						"> /dev/null 2>&1"
+					],
 				},
 			},
 		},
 		"Markdown": {
-			"soft_wrap": "none",
+			"soft_wrap": "editor_width",
 		},
 	},
 }
