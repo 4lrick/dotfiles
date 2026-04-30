@@ -57,9 +57,17 @@ run_cmd() {
 	selected="$(confirm_exit)"
 	if [[ "$selected" == "$yes" ]]; then
 		if [[ $1 == '--shutdown' ]]; then
-			systemctl poweroff
+			if [[  command -v hyprshutdown >/dev/null 2>&1  ]]; then
+				hyprshutdown --post-cmd	"systemctl poweroff"
+			else
+				systemctl poweroff
+			fi
 		elif [[ $1 == '--reboot' ]]; then
-			systemctl reboot
+			if [[ command -v hyprshutdown >/dev/null 2>&1 ]]; then
+				hyprshutdown --post-cmd	"systemctl reboot"
+			else
+				systemctl reboot
+			fi
 		elif [[ $1 == '--suspend' ]]; then
 			mpc -q pause
 			amixer set Master mute
@@ -74,7 +82,7 @@ run_cmd() {
 			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
 			elif [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
-				hyprctl dispatch exit 1
+				hyprshutdown --post-cmd	"hyprctl dispatch exit 1"
 			fi
 		fi
 	else
