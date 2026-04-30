@@ -57,13 +57,13 @@ run_cmd() {
 	selected="$(confirm_exit)"
 	if [[ "$selected" == "$yes" ]]; then
 		if [[ $1 == '--shutdown' ]]; then
-			if [[  command -v hyprshutdown >/dev/null 2>&1  ]]; then
+			if command -v hyprshutdown >/dev/null 2>&1; then
 				hyprshutdown --post-cmd	"systemctl poweroff"
 			else
 				systemctl poweroff
 			fi
 		elif [[ $1 == '--reboot' ]]; then
-			if [[ command -v hyprshutdown >/dev/null 2>&1 ]]; then
+			if command -v hyprshutdown >/dev/null 2>&1; then
 				hyprshutdown --post-cmd	"systemctl reboot"
 			else
 				systemctl reboot
@@ -81,7 +81,7 @@ run_cmd() {
 				i3-msg exit
 			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-			elif [[  command -v hyprshutdown >/dev/null 2>&1  ]]; then
+			elif command -v hyprshutdown >/dev/null 2>&1; then
 				hyprshutdown --post-cmd	"hyprctl dispatch exit 1"
 			fi
 		fi
