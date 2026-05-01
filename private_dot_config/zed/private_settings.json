@@ -7,11 +7,15 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
-	"edit_predictions": {
+	"project_panel": {
+  "dock": "left"
+ },
+ "edit_predictions": {
 		"provider": "copilot",
 	},
 	"agent": {
-		"default_model": {
+		"dock": "right",
+  "default_model": {
 			"provider": "copilot_chat",
 			"model": "gpt-5-mini",
 		},
