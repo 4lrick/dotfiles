@@ -2,7 +2,7 @@
 
 A minimal layout is automatically applied when viewing images while using ModernZ osc, which also features zoom controls.
 
-![modernz_image_mode](https://github.com/user-attachments/assets/e2501652-aa84-4725-93cf-5cb86931b45e)
+![image_mode_modernz](https://github.com/user-attachments/assets/f9e999bc-6b6b-43d8-893c-d361f86db59f)
 
 ## Zoom Controls
 
@@ -24,12 +24,13 @@ reset-on-next-file=video-zoom,panscan,video-unscaled,video-rotate,video-align-x,
 
 [Auto profiles](https://mpv.io/manual/master/#conditional-auto-profiles) that apply useful [mpv options](https://mpv.io/manual/master/#options) and [ModernZ options](/docs/USER_OPTS.md) when viewing images:
 ```EditorConfig
-[video]
+[Video]
     profile-cond=p["current-tracks/video"] and not p["current-tracks/video"].image
     profile-restore=copy-equal
+    input-commands=disable-section image
     taskbar-progress=yes
 
-[image]
+[Image]
     profile-desc=ModernZ osc Image Viewer mode
     profile-cond=p["current-tracks/video"] and p["current-tracks/video"].image and not p["current-tracks/video"].albumart
     profile-restore=copy-equal
@@ -40,10 +41,17 @@ reset-on-next-file=video-zoom,panscan,video-unscaled,video-rotate,video-align-x,
     video-aspect-override=no
     image-display-duration=inf
     title=${media-title} [${?width:${width}x${height}}]
-    script-opts-append=modernz-fade_alpha=50
-    script-opts-append=modernz-window_title=yes
-    script-opts-append=modernz-bottomhover_zone=50
-    script-opts-append=modernz-windowcontrols_title=${media-title} [${?width:${width}x${height}}]
+    input-commands=enable-section image allow-hide-cursor
+    script-opts-append=modernz-osc_fade_strength=50
+    script-opts-append=modernz-show_window_title=yes
+```
+
+In your `input.conf`, add: (adjust keybinds to what suits you)
+```
+# Image viewer binds
+WHEEL_UP         {image} script-binding positioning/cursor-centric-zoom  0.1
+WHEEL_DOWN       {image} script-binding positioning/cursor-centric-zoom -0.1
+0                {image} no-osd set video-align-y 0; no-osd set video-align-x 0
 ```
 
 ## Useful
