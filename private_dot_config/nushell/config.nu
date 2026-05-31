@@ -34,6 +34,7 @@ $env.EDITOR = 'nvim'
 
 # ALIAS
 alias cat = bat
+alias l = ls -a
 
 
 # ZOXIDE SETUP
