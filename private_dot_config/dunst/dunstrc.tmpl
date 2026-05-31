@@ -28,17 +28,17 @@
 
     # The maximum height of a single notification, excluding the frame.
     {{- if eq .chezmoi.hostname "B00T" }}
-    height = 350
+    height = (0, 350)
     {{- end }}
     {{- if eq .chezmoi.hostname "XPS-9510" }}
-    height = 500
+    height = (0, 500)
     {{- end }}
 
     # Position the notification in the top right corner
     origin = top-right
 
     # Offset from the origin
-    offset = 10x50
+    offset = (10, 50)
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -461,4 +461,7 @@
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
 #
+[home-assistant]
+	max_icon_size = 256
+
 # vim: ft=cfg
