@@ -50,6 +50,7 @@ return {
 		end
 
 		vim.lsp.enable('gdscript')
+		vim.lsp.enable('nushell')
 
 		local signs = {
 			{ name = "DiagnosticSignError", text = "" },
