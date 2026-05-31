@@ -79,19 +79,23 @@ const getActiveTerminalInfo = async ($, pid) => {
     }
 
     const isTerminal = await isPidInAncestry(activePid, pid);
-    if (!isTerminal) {
-      return null;
-    }
 
     return {
       pid: activePid,
       address: typeof activeWindow?.address === "string" ? activeWindow.address : null,
       title: typeof activeWindow?.title === "string" ? activeWindow.title : null,
+      isTerminal,
     };
   } catch {
     return null;
   }
 };
+
+const TERMINAL_CLASSES = new Set([
+  "Ghostty", "kitty", "Alacritty", "foot", "URxvt", "xterm",
+  "konsole", "Konsole", "yakuake", "Gnome-terminal", "Terminator",
+  "Tilix", "WezTerm", "st", "contour",
+]);
 
 const findClientCandidates = async ($, pid) => {
   const clientsOutput = await $`hyprctl clients -j`.quiet().nothrow();
@@ -105,26 +109,35 @@ const findClientCandidates = async ($, pid) => {
       return [];
     }
 
-    const candidates = [];
+    const ancestryCandidates = [];
+    const terminalClassCandidates = [];
     for (const client of clients) {
       const clientPid = Number(client?.pid);
       if (!Number.isFinite(clientPid)) {
         continue;
       }
 
+      const clientClass = typeof client?.class === "string" ? client.class : "";
+
       const matches = await isPidInAncestry(clientPid, pid);
-      if (!matches) {
-        continue;
+      if (matches) {
+        ancestryCandidates.push({
+          pid: clientPid,
+          address: typeof client?.address === "string" ? client.address : null,
+          title: typeof client?.title === "string" ? client.title : null,
+        });
       }
 
-      candidates.push({
-        pid: clientPid,
-        address: typeof client?.address === "string" ? client.address : null,
-        title: typeof client?.title === "string" ? client.title : null,
-      });
+      if (TERMINAL_CLASSES.has(clientClass)) {
+        terminalClassCandidates.push({
+          pid: clientPid,
+          address: typeof client?.address === "string" ? client.address : null,
+          title: typeof client?.title === "string" ? client.title : null,
+        });
+      }
     }
 
-    return candidates;
+    return ancestryCandidates.length > 0 ? ancestryCandidates : terminalClassCandidates;
   } catch {
     return [];
   }
@@ -149,7 +162,15 @@ const pickTerminalAddress = (candidates, terminalTitle) => {
   return null;
 };
 
-const isActiveWindowFocused = async ($, pid, terminalAddress, terminalTitle) => {
+const getCurrentTmuxPaneId = async ($) => {
+  const result = await $`tmux display-message -p '#{pane_id}'`.quiet().nothrow();
+  if (result.exitCode !== 0) {
+    return null;
+  }
+  return result.text().trim() || null;
+};
+
+const isActiveWindowFocused = async ($, pid, terminalAddress, terminalTitle, tmuxPaneId) => {
   const activeWindowOutput = await $`hyprctl activewindow -j`.quiet().nothrow();
   if (activeWindowOutput.exitCode !== 0) {
     return false;
@@ -161,10 +182,21 @@ const isActiveWindowFocused = async ($, pid, terminalAddress, terminalTitle) => 
       typeof activeWindow?.address === "string" ? activeWindow.address : null;
     const activeTitle =
       typeof activeWindow?.title === "string" ? activeWindow.title : null;
+    const activeClass =
+      typeof activeWindow?.class === "string" ? activeWindow.class : "";
     const activePid = Number(activeWindow?.pid);
 
     if (terminalAddress && activeAddress) {
-      return activeAddress === terminalAddress;
+      if (activeAddress !== terminalAddress) {
+        return false;
+      }
+
+      if (tmuxPaneId) {
+        const currentPaneId = await getCurrentTmuxPaneId($);
+        return currentPaneId === tmuxPaneId;
+      }
+
+      return true;
     }
 
     if (terminalTitle && activeTitle) {
@@ -172,16 +204,19 @@ const isActiveWindowFocused = async ($, pid, terminalAddress, terminalTitle) => 
     }
 
     if (Number.isFinite(activePid)) {
-      return await isPidInAncestry(activePid, pid);
+      const isAncestor = await isPidInAncestry(activePid, pid);
+      if (isAncestor) {
+        return true;
+      }
     }
+
+    return TERMINAL_CLASSES.has(activeClass);
   } catch {
     return false;
   }
-
-  return false;
 };
 
-const notifyWithFocus = async ($, title, body, focusTarget) => {
+const notifyWithFocus = async ($, title, body, focusTarget, tmuxWindowId) => {
   const actionResult = await $`notify-send --action=default=Focus --wait ${title} ${body}`
     .quiet()
     .nothrow();
@@ -189,16 +224,15 @@ const notifyWithFocus = async ($, title, body, focusTarget) => {
 
   if (actionResult.exitCode === 0 && action === "default" && focusTarget) {
     if (focusTarget.address) {
-      await $`hyprctl dispatch focuswindow address:${focusTarget.address}`
-        .quiet()
-        .nothrow();
-      return;
+      const lua = `hl.dsp.focus({ window = "address:${focusTarget.address}" })`;
+      await $`hyprctl dispatch ${lua}`.quiet().nothrow();
+    } else if (focusTarget.pid) {
+      const lua = `hl.dsp.focus({ window = "pid:${focusTarget.pid}" })`;
+      await $`hyprctl dispatch ${lua}`.quiet().nothrow();
     }
-    if (focusTarget.pid) {
-      await $`hyprctl dispatch focuswindow pid:${focusTarget.pid}`
-        .quiet()
-        .nothrow();
-      return;
+
+    if (tmuxWindowId) {
+      await $`tmux select-window -t ${tmuxWindowId}`.quiet().nothrow();
     }
     return;
   }
@@ -247,12 +281,17 @@ export const NotifyOnIdlePlugin = async ({ $, client }) => {
   const terminalInfo = await getActiveTerminalInfo($, process.pid);
   let terminalAddress = terminalInfo?.address ?? null;
   const terminalTitle = terminalInfo?.title ?? null;
+  const tmuxPaneId = process.env.TMUX_PANE ?? null;
+  const tmuxWindowId = process.env.TMUX
+    ? (await $`tmux display-message -p '#{window_id}'`.quiet().nothrow()).text().trim() || null
+    : null;
 
   return {
     event: async ({ event }) => {
       if (
         event.type !== "session.idle" &&
         event.type !== "session.error" &&
+        event.type !== "permission.asked" &&
         event.type !== "permission.updated" &&
         event.type !== "question.asked"
       ) {
@@ -268,7 +307,8 @@ export const NotifyOnIdlePlugin = async ({ $, client }) => {
         $,
         process.pid,
         terminalAddress,
-        terminalTitle
+        terminalTitle,
+        tmuxPaneId
       );
       if (focused) {
         return;
@@ -316,6 +356,17 @@ export const NotifyOnIdlePlugin = async ({ $, client }) => {
         } else {
           body = "Session error";
         }
+      } else if (event.type === "permission.asked") {
+        const permissionTitle = event.properties?.title?.trim();
+        if (permissionTitle && sessionLabel) {
+          body = `Permission asked (${sessionLabel}): ${permissionTitle}`;
+        } else if (permissionTitle) {
+          body = `Permission asked: ${permissionTitle}`;
+        } else if (sessionLabel) {
+          body = `Permission asked (${sessionLabel})`;
+        } else {
+          body = "Permission asked";
+        }
       } else if (event.type === "session.idle") {
         if (isSubagent && sessionLabel) {
           body = `Subagent finished: ${sessionLabel}`;
@@ -332,7 +383,7 @@ export const NotifyOnIdlePlugin = async ({ $, client }) => {
       };
 
       void playSound($);
-      void notifyWithFocus($, title, body, focusTarget);
+      void notifyWithFocus($, title, body, focusTarget, tmuxWindowId);
     },
   };
 };
