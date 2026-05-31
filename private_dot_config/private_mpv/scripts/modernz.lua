@@ -4227,3 +4227,14 @@ visibility_mode(user_opts.visibility, true)
 set_virt_mouse_area(0, 0, 0, 0, "input")
 set_virt_mouse_area(0, 0, 0, 0, "window-controls")
 set_virt_mouse_area(0, 0, 0, 0, "window-controls-title")
+
+pcall(function()
+    local function find_tc()
+        for _, el in ipairs(elements) do
+            if el.name == "time_codes" then return el end
+        end
+    end
+    local dir = debug.getinfo(1, "S").source:match("@?(.*/)")
+    local patch = dofile(dir .. "add-endtime.lua")
+    if patch then patch(find_tc) end
+end)
