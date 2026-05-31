@@ -2,6 +2,7 @@
 ---- MONITORS ----
 ------------------
 
+{{- if eq .chezmoi.hostname "B00T" }}
 hl.monitor({
 	output = "DP-2",
 	mode = "1920x1080@60",
@@ -22,14 +23,24 @@ hl.monitor({
 	position = "3840x0",
 	scale = 1,
 })
+{{- else if eq .chezmoi.hostname "XPS-9510" }}
+hl.monitor({
+	output = "eDP-1",
+	mode = "preferred",
+	position = "auto",
+	scale = 1,
+})
+{{- end }}
 
 --------------------------
 ---- WORKSPACES RULES ----
 --------------------------
 
+{{- if eq .chezmoi.hostname "B00T" }}
 hl.workspace_rule({ workspace = "2", monitor = "DP-2" })
 hl.workspace_rule({ workspace = "1", monitor = "DP-3", default = true })
 hl.workspace_rule({ workspace = "3", monitor = "DP-1" })
+{{- end }}
 
 -------------------
 ---- AUTOSTART ----
@@ -41,11 +52,21 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("sleep 10 && vicinae server")
 	hl.exec_cmd("fcitx5")
+	{{- if eq .chezmoi.hostname "B00T" }}
 	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
 	hl.exec_cmd("wlsunset -l 44.837927 -L -0.579294")
 	hl.exec_cmd("waybar & dex --autostart --environment hyprland")
 	hl.exec_cmd("hyprlock")
 	hl.exec_cmd("sleep 10 && vesktop")
+	{{- else if eq .chezmoi.hostname "XPS-9510" }}
+	hl.exec_cmd("/usr/libexec/polkit-gnome-authentication-agent-1")
+	hl.exec_cmd("wlsunset -l 44.837927 -L -0.579294")
+	hl.exec_cmd("waybar & dex-autostart --autostart --environment hyprland")
+	hl.exec_cmd("hypridle")
+	hl.exec_cmd("thunderbird")
+	hl.exec_cmd("flatpak run com.github.IsmaelMartinez.teams_for_linux --enable-wayland-ime")
+	hl.exec_cmd("sleep 2 && legcord")
+	{{- end }}
 end)
 
 -------------------------------
@@ -53,10 +74,12 @@ end)
 -------------------------------
 
 hl.env("XCURSOR_SIZE", "34")
+{{- if eq .chezmoi.hostname "B00T" }}
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
-hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("GBM_BACKEND", "nvidia-drm")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+{{- end }}
+hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XCURSOR_THEME", "XCursor-Pro-Dark")
 hl.env("HYPRCURSOR_THEME", "XCursor-Pro-Dark-Hyprcursor")
 hl.env("HYPRCURSOR_SIZE", "34")
@@ -73,13 +96,21 @@ hl.config({
 
 		follow_mouse = 1,
 		focus_on_close = 1,
+		{{- if eq .chezmoi.hostname "B00T" }}
 		sensitivity = -0.5,
+		{{- else if eq .chezmoi.hostname "XPS-9510" }}
+		sensitivity = 0.1,
+		{{- end }}
 		numlock_by_default = true,
 		accel_profile = "flat",
 
 		touchpad = {
 			natural_scroll = true,
+			{{- if eq .chezmoi.hostname "B00T" }}
 			disable_while_typing = true,
+			{{- else if eq .chezmoi.hostname "XPS-9510" }}
+			disable_while_typing = false,
+			{{- end }}
 			scroll_factor = 0.5,
 			tap_to_click = true,
 		},
@@ -389,6 +420,7 @@ hl.window_rule({
 	border_size = 0,
 })
 
+{{- if eq .chezmoi.hostname "B00T" }}
 hl.window_rule({
 	match = { class = "^(vesktop|WebCord|discord|legcord)$" },
 	monitor = "DP-2",
@@ -411,6 +443,37 @@ hl.window_rule({
 	match = { class = "^(steam)$" },
 	tile = true,
 })
+{{- else if eq .chezmoi.hostname "XPS-9510" }}
+hl.window_rule({
+	match = { class = "^(com.github.IsmaelMartinez.teams_for_linux)$" },
+	workspace = "5",
+	border_size = 0,
+})
+
+hl.window_rule({
+	match = { class = "^(net.thunderbird.Thunderbird)$" },
+	workspace = "6",
+	border_size = 0,
+})
+
+hl.window_rule({
+	match = { class = "^(discord|WebCord|legcord)$" },
+	workspace = "7",
+	border_size = 0,
+})
+
+hl.window_rule({
+	match = { class = "^(brave-ejhkdoiecgkmdpomoahkdihbcldkgjci-Default)$" },
+	workspace = "8",
+	border_size = 0,
+})
+
+hl.window_rule({
+	match = { class = "^(dev.zed.Zed)$" },
+	tile = true,
+	border_size = 0,
+})
+{{- end }}
 
 hl.layer_rule({
 	match = { namespace = "vicinae" },
@@ -512,6 +575,20 @@ hl.bind(
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+{{- if eq .chezmoi.hostname "XPS-9510" }}
+-- Brightness control
+hl.bind(
+	"XF86MonBrightnessUp",
+	hl.dsp.exec_cmd("light -A 5 && notify-send -r 9999 \"Brightness\" \"$(light -G | awk '{print int($1)}')%\""),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86MonBrightnessDown",
+	hl.dsp.exec_cmd("light -U 5 && notify-send -r 9999 \"Brightness\" \"$(light -G | awk '{print int($1)}')%\""),
+	{ locked = true, repeating = true }
+)
+{{- end }}
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
