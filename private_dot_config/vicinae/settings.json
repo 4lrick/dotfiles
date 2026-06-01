@@ -17,7 +17,9 @@
    "launcher_window": {
       "opacity": 0.85
    },
-   "favorites": [],
+   "favorites": [
+      "applications:zen"
+   ],
    "providers": {
       "@Ninetonine/store.vicinae.searxng": {
          "preferences": {
