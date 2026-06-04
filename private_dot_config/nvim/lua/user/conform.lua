@@ -28,6 +28,7 @@ return {
 			vue = { "prettier", "eslint_d" },
 			bash = { "shfmt" },
 			gdscript = { "gdformat" },
+			nu = { "nufmt" },
 		},
 	},
 }
