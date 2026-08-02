@@ -100,5 +100,7 @@ def --env --wrapped spf [...args] {
     }
 }
 
+{{- if eq .chezmoi.hostname "B00T" }}
 # COMMANDS
 fastfetch
+{{- end }}
