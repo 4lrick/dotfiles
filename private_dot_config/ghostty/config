@@ -2,11 +2,11 @@
 theme = kitty_theme
 font-family = JetBrainsMono Nerd Font
 font-size = 15.5
-window-decoration = false
+window-decoration = none
 unfocused-split-opacity = 1
 confirm-close-surface = false
-auto-update = check
 gtk-single-instance = true
+quit-after-last-window-closed = false
 custom-shader = shaders/cursor_trail.glsl
 # custom-shader = shaders/crt.glsl
 
