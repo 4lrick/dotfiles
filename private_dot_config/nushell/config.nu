@@ -20,7 +20,7 @@ $env.config = {
       event: {edit: DeleteWord}
     }
   ]
-  abbreviations: {cat: "bat", l: "ls -a"}
+  abbreviations: {cat: "bat", l: "ls -a", icat: "kitty icat"}
 }
 
 # ENV
@@ -65,6 +65,39 @@ def --env yy [...args] {
     cd $cwd
   }
   rm -fp $tmp
+}
+
+def --env --wrapped spf [...args] {
+    let state_home = (
+        $env.XDG_STATE_HOME?
+        | default ($env.HOME | path join ".local" "state")
+    )
+
+    let last_dir_file = (
+        $state_home
+        | path join "superfile" "lastdir"
+    )
+
+    $env.SPF_LAST_DIR = $last_dir_file
+
+    ^spf ...$args
+
+    if ($last_dir_file | path exists) {
+        let target_dir = (
+            open --raw $last_dir_file
+            | str trim
+            | str replace --regex '^\s*cd\s+' ''
+            | str trim
+            | str trim --char "'"
+            | str trim --char '"'
+        )
+
+        rm --force $last_dir_file
+
+        if ($target_dir | path exists) {
+            cd $target_dir
+        }
+    }
 }
 
 # COMMANDS
