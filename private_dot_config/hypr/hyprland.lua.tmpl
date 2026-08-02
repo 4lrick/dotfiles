@@ -174,9 +174,9 @@ hl.curve("menu_decel", { type = "bezier", points = { { 0.1, 1 }, { 0, 1 } } })
 hl.curve("menu_accel", { type = "bezier", points = { { 0.38, 0.04 }, { 1, 0.07 } } })
 
 -- Spring Curves
-hl.curve("spring_menu", { type = "spring", mass = 1, stiffness = 80, dampening = 14 })
-hl.curve("spring_window", { type = "spring", mass = 1, stiffness = 30, dampening = 8 })
-hl.curve("spring_workspace", { type = "spring", mass = 1.2, stiffness = 30, dampening = 10 })
+hl.curve("spring_menu", { type = "spring", mass = 1, stiffness = 1240, dampening = 55 })
+hl.curve("spring_window", { type = "spring", mass = 1, stiffness = 465, dampening = 32 })
+hl.curve("spring_workspace", { type = "spring", mass = 1.2, stiffness = 465, dampening = 39 })
 
 -- Window animations
 hl.animation({ leaf = "windows", enabled = true, speed = 1, spring = "spring_window" })
@@ -488,11 +488,13 @@ hl.layer_rule({
 
 local mainMod = "SUPER"
 
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("ghostty"))
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("ghostty +new-window"))
 hl.bind(mainMod .. " + SHIFT + A", hl.dsp.window.close())
 hl.bind("CTRL + SHIFT + E", hl.dsp.exec_cmd("$HOME/.config/rofi/powermenu/type-3/powermenu.sh"))
-hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | tesseract stdin stdout | wl-copy'))
+hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | tesseract stdin stdout -l eng+fra | wl-copy'))
+{{- if eq .chezmoi.hostname "XPS-9510" }}
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("flameshot gui & sleep 0.2 && hyprctl dispatch 'hl.dsp.cursor.move({ x = 2880, y = 540 })'"))
+{{- end }}
 hl.bind("CTRL + E", hl.dsp.exec_cmd("nautilus"))
 hl.bind(mainMod .. " + SHIFT + Space", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("vicinae toggle"))
