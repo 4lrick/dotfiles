@@ -56,6 +56,51 @@
             "sort-by-memory": false
          }
       },
+      "@lucastaonline/store.raycast.raycast-language-tool": {
+         "preferences": {
+            "abtest": "deggec,esggec,ptggec,qb,gc_1_aggressive,de_gc_1_aggressive,fr_gc_1_aggressive,pt_gc_1_aggressive,nl_gc_1_aggressive,es_gc_1_aggressive",
+            "allowIncompleteResults": true,
+            "enableHiddenRules": true,
+            "enabledOnly": false,
+            "level": "picky",
+            "mode": "allButTextLevelOnly",
+            "motherTongue": "fr",
+            "noopLanguages": "",
+            "showAdvancedOptions": false,
+            "useragent": "standalone",
+            "preferredVariants": ""
+         },
+         "entrypoints": {
+            "check-text-instant": {
+               "alias": "lt"
+            }
+         }
+      },
+      "@suntyx/rbw": {
+         "enabled": true,
+         "preferences": {
+            "lockTimeout": "100",
+            "rbwPath": "",
+            "syncInterval": "",
+            "baseUrl": "https://vault.suntyx.top",
+            "email": "sunntyx@protonmail.com",
+            "identityUrl": "",
+            "notificationsUrl": "",
+            "pinentry": "",
+            "profile": "",
+            "uiUrl": "",
+            "ssoId": "",
+            "defaultAction": "paste",
+            "fetchFavicons": true,
+            "faviconSize": "128",
+            "faviconProvider": "bitwarden"
+         },
+         "entrypoints": {
+            "search": {
+               "alias": "s"
+            }
+         }
+      },
       "applications": {
          "preferences": {
             "defaultAction": "launch",
