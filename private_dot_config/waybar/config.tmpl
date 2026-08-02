@@ -55,6 +55,7 @@
         },
         "format": "{icon}  {capacity}%",
         "format-icons": ["", "", "", "", ""],
+		"on-click": "notify-send \"$(upower --battery)\"",
     },
     "custom/kernel": {
         "exec": "uname -r | cut -d '-' -f1; awk '{printf \"%02d:%02d:%02d\", int($1/3600), int(($1%3600)/60), int($1%60)}' /proc/uptime",
