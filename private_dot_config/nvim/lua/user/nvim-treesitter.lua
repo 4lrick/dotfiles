@@ -1,40 +1,44 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPost", "BufNewFile" },
+	branch = "main",
+	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		local configs = require("nvim-treesitter.configs")
+		local treesitter = require("nvim-treesitter")
 
-		configs.setup({
-			ensure_installed = {
-				"bash",
-				"c",
-				"cpp",
-				"c_sharp",
-				"css",
-				"dockerfile",
-				"gdscript",
-				"html",
-				"hyprlang",
-				"javascript",
-				"json",
-				"lua",
-				"make",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"query",
-				"tsx",
-				"typescript",
-				"vim",
-				"vimdoc",
-				"vue",
-				"yaml",
-			},
-			sync_install = false,
-			highlight = { enable = true },
-			autopairs = { enable = true },
-			indent = { enable = true },
+		treesitter.setup()
+
+		treesitter.install({
+			"bash",
+			"c",
+			"cpp",
+			"c_sharp",
+			"css",
+			"dockerfile",
+			"gdscript",
+			"html",
+			"hyprlang",
+			"javascript",
+			"json",
+			"lua",
+			"make",
+			"markdown",
+			"markdown_inline",
+			"python",
+			"query",
+			"tsx",
+			"typescript",
+			"vim",
+			"vimdoc",
+			"vue",
+			"yaml",
+		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				pcall(vim.treesitter.start)
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
 		})
 	end,
 }
