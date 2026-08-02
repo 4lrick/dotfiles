@@ -29,6 +29,7 @@ $env.PROMPT_INDICATOR_VI_NORMAL = ""
 $env.PROMPT_INDICATOR_VI_INSERT = ""
 $env.SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/gcr/ssh"
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+$env.PATH = ($env.PATH | prepend $"($env.HOME)/.local/bin")
 $env.EDITOR = 'nvim'
 
 # ZOXIDE SETUP
