@@ -7,7 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
-	"project_panel": {
+	"agent_servers": {
+  "opencode": {
+   "type": "registry"
+  }
+ },
+ "project_panel": {
   "dock": "left"
  },
  "edit_predictions": {
